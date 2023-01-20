@@ -17,15 +17,15 @@
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Identifiant : " />
-            <TextField />
+            <TextField fx:id="username" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe : " />
-            <TextField cache="true" />
+            <TextField fx:id="password" cache="true" />
          </children>
       </HBox>
-      <Button mnemonicParsing="false" text="Valider" />
+      <Button fx:id="connect" mnemonicParsing="false" text="Valider" />
    </children>
 </VBox>
