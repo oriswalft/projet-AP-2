@@ -1,12 +1,18 @@
 package com.example;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 public class PrimaryController {
 
     @FXML
-    private void switchToSecondary() throws IOException {
-        App.setRoot("secondary");
-    }
+    private Button connect;
+
+    @FXML
+    private TextField password;
+
+    @FXML
+    private TextField username;
+
 }
