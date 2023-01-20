@@ -26,6 +26,6 @@
             <TextField fx:id="password" cache="true" />
          </children>
       </HBox>
-      <Button fx:id="connect" mnemonicParsing="false" text="Valider" />
+      <Button fx:id="connect" mnemonicParsing="false" onAction="#ss" text="Valider" />
    </children>
 </VBox>

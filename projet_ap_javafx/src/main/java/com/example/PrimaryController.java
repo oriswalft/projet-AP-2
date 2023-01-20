@@ -1,5 +1,6 @@
 package com.example;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,34 +22,19 @@ public class PrimaryController {
     @FXML
     private TextField username;
 
+    private final Identification id = new Identification();
+
     @FXML
-    void ss(ActionEvent action){
-        String dbURL = "jdbc:mysql://localhost:3306/baseexercice";
-        String nomUtilisateur = "root";
-        String mdp = "Thomas1003";
-
-        try {
-            // Connexion en passant les informations spécifiées précédemment
-            Connection conn = DriverManager.getConnection(dbURL, nomUtilisateur, mdp);
-            // Si on est bien connecté à la DB
-            if (conn != null) {
-              // On affiche un petit message sur le terminal
-              System.out.println("Connexion réussie !");
-
-              ResultSet res = conn.createStatement().executeQuery("SELECT email FROM profil;");
-
-                while (res.next()){
-                    System.out.println(res.getString("email"));
-                }
-            }
-          } catch (SQLException ex) {
-            // Code de traitement d'erreur
-            ex.printStackTrace();
-          }
-
+    void ss(ActionEvent action) throws IOException{
         String us = username.getText();
-        String pw = username.getText();
-        
+        String pw = password.getText();
 
+        if (id.validKey(us, pw)){
+            System.out.println("L'authentification a réussi !");
+
+            App.setRoot("secondary");
+        } else {
+            System.out.println("L'authentification a échoué! Veuillez réessayer.");
+        }
     }
 }
