@@ -9,24 +9,28 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="257.0" prefWidth="322.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
+<VBox alignment="CENTER" style="-fx-background-color: #cccccc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
    <children>
-      <Label text="Connectez vous" />
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+      <VBox alignment="CENTER" maxHeight="400.0" maxWidth="250.0" minHeight="400.0" minWidth="250.0" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #123e6a;-fx-border-style: solid; -fx-border-width: 1px; -fx-border-radius: 8px;">
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Identifiant : " />
-            <TextField fx:id="username" />
+            <Label style="-fx-font-weight: bold;" text="Connectez vous :" textFill="#fffcfc" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifiant : " />
+                  <TextField fx:id="username" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe : " />
+                  <PasswordField fx:id="password" />
+               </children>
+            </HBox>
+            <Button fx:id="connect" mnemonicParsing="false" onAction="#ss" text="Valider" />
          </children>
-      </HBox>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe : " />
-            <PasswordField fx:id="password" />
-         </children>
-      </HBox>
-      <Button fx:id="connect" mnemonicParsing="false" onAction="#ss" text="Valider" />
+      </VBox>
    </children>
 </VBox>
