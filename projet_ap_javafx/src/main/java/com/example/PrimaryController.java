@@ -26,11 +26,11 @@ public class PrimaryController {
         String us = username.getText();
         String pw = password.getText();
 
-        if (id.validKey(us, pw)){
+        if (id.validKey(us, pw)){   // Compare la paire saisie, et passe à l'écran suivant si valide.
             System.out.println("L'authentification a réussi !");
 
             App.setRoot("secondary");
-        } else {
+        } else {                    // En cas d'échec. Peut mettre les zones de saisies en rouge, ou afficher un message.
             System.out.println("L'authentification a échoué! Veuillez réessayer.");
         }
     }
