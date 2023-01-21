@@ -7,29 +7,48 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: #cccccc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
+<VBox alignment="CENTER" style="-fx-background-color: #5c6160;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
    <children>
-      <VBox alignment="CENTER" maxHeight="400.0" maxWidth="250.0" minHeight="400.0" minWidth="250.0" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #123e6a;-fx-border-style: solid; -fx-border-width: 1px; -fx-border-radius: 8px;">
-         <padding>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </padding>
+      <VBox alignment="TOP_CENTER" maxHeight="400.0" maxWidth="250.0" minHeight="400.0" minWidth="250.0" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #074f75; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-radius: 10%;">
          <children>
-            <Label style="-fx-font-weight: bold;" text="Connectez vous :" textFill="#fffcfc" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <Label alignment="TOP_CENTER" style="-fx-font-weight: bold;" text="Portail de connexion au service de gestion des fiches de frais" textAlignment="CENTER" textFill="#fffcfc" underline="true" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="213.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Identifiant : " />
-                  <TextField fx:id="username" />
+                  <TextField fx:id="username" promptText="Identifiant">
+                     <HBox.margin>
+                        <Insets bottom="10.0" top="50.0" />
+                     </HBox.margin></TextField>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="40.0" prefWidth="210.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe : " />
-                  <PasswordField fx:id="password" />
+                  <PasswordField fx:id="password" promptText="Mot de passe">
+                     <HBox.margin>
+                        <Insets bottom="50.0" />
+                     </HBox.margin></PasswordField>
                </children>
             </HBox>
-            <Button fx:id="connect" mnemonicParsing="false" onAction="#ss" text="Valider" />
+            <Label fx:id="connexionLabel" style="-fx-font-weight: bold;" text="Label" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
+            <Button fx:id="connect" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ss" prefWidth="200.0" style="-fx-background-color: #ffffff;" text="Valider">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin></Button>
+            <Label text="Si vous ne disposez pas d'identifiants de connexion, rapprochez vous du service des ressources humaines" textAlignment="CENTER" textFill="#ffffffa8" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </children>

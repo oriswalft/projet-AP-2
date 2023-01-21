@@ -3,10 +3,12 @@ package com.example;
 import java.io.IOException;
 
 
+import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
 
 public class PrimaryController {
 
@@ -19,6 +21,9 @@ public class PrimaryController {
     @FXML
     private TextField username;
 
+    @FXML
+    private Label connexionLabel;
+
     private final Identification id = new Identification();
 
     @FXML
@@ -30,8 +35,12 @@ public class PrimaryController {
             System.out.println("L'authentification a réussi !");
 
             App.setRoot("secondary");
-        } else {                    // En cas d'échec. Peut mettre les zones de saisies en rouge, ou afficher un message.
-            System.out.println("L'authentification a échoué! Veuillez réessayer.");
+        } else {                    // En cas d'échec.
+            connexionLabel.setText("L'authentification a échoué!");
+            connexionLabel.setVisible(true);
+
+            password.setStyle("-fx-border-color : #ff0000");
+            password.setBorder(null);
         }
     }
 }
