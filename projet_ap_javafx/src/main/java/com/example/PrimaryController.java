@@ -4,11 +4,13 @@ import java.io.IOException;
 
 
 import javafx.scene.control.Label;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Border;
+import javafx.util.Duration;
 
 public class PrimaryController {
 
@@ -39,8 +41,23 @@ public class PrimaryController {
             connexionLabel.setText("L'authentification a échoué!");
             connexionLabel.setVisible(true);
 
+            shake(username);
+            shake(password);
             password.setStyle("-fx-border-color : #ff0000");
-            password.setBorder(null);
         }
+    }
+
+    private void shake(Node node){
+        // Animation :
+        TranslateTransition tTrans1 = new TranslateTransition();
+        
+        tTrans1.setDuration(Duration.millis(200));
+
+        tTrans1.setByX(25);
+        tTrans1.setCycleCount(4);
+        tTrans1.setAutoReverse(true);
+
+        tTrans1.setNode(node);
+        tTrans1.play();
     }
 }
