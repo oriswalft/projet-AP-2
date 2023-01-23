@@ -37,6 +37,7 @@ public class PrimaryController {
             System.out.println("L'authentification a réussi !");
 
             App.setRoot("secondary");
+
         } else {                    // En cas d'échec.
             connexionLabel.setText("L'authentification a échoué!");
             connexionLabel.setVisible(true);

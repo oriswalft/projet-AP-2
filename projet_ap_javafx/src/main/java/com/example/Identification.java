@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Identification {
-    private final String dbURL = "jdbc:mysql://localhost:3306/baseexercice";
+    private final String dbURL = "jdbc:mysql://localhost:3306/ap";
     private final String dbUsername = "root";
     private final String dbMDP = "Thomas1003";
     private User user;
@@ -42,7 +42,7 @@ public class Identification {
         try {
             Statement req = conn.createStatement();
             // Requête SQL pour récupérer les paires N.U / MDP
-            ResultSet res = req.executeQuery("SELECT username,password FROM test_ap");
+            ResultSet res = req.executeQuery("SELECT * FROM utilisateur");
 
             // Parcours chaque couple et vérifie s'il y a un match 
             while (res.next()){
