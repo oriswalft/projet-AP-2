@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" style="-fx-background-color: #5c6160; -fx-background-radius: 30px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
+<VBox alignment="CENTER" style="-fx-background-color: #5c6160;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.PrimaryController">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="400.0" maxWidth="250.0" minHeight="400.0" minWidth="250.0" prefHeight="400.0" prefWidth="250.0" style="-fx-background-color: #074f75; -fx-border-style: solid; -fx-border-width: 2px; -fx-border-radius: 10%; -fx-background-radius: 10%;">
          <children>
