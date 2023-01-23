@@ -42,7 +42,7 @@ public class Identification {
         try {
             Statement req = conn.createStatement();
             // Requête SQL pour récupérer les paires N.U / MDP
-            ResultSet res = req.executeQuery("SELECT * FROM test_ap");
+            ResultSet res = req.executeQuery("SELECT username,password FROM test_ap");
 
             // Parcours chaque couple et vérifie s'il y a un match 
             while (res.next()){

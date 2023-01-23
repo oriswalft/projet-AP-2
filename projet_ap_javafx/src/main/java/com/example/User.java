@@ -12,7 +12,6 @@ public class User {
     private static int TYPE_VEHICULE;
     private static int TYPE_AGENT;
 
-    User(){}
 
     User(ResultSet res){
         try {
@@ -27,7 +26,33 @@ public class User {
         }
     }
 
-    public User getInstance(){
-        return this;
+
+    public static String getMATRICULE() {
+        return MATRICULE;
+    }
+
+
+    public static int getGENRE() {
+        return GENRE;
+    }
+
+
+    public static String getNOM() {
+        return NOM;
+    }
+
+
+    public static String getPRENOM() {
+        return PRENOM;
+    }
+
+
+    public static int getTYPE_VEHICULE() {
+        return TYPE_VEHICULE;
+    }
+
+
+    public static int getTYPE_AGENT() {
+        return TYPE_AGENT;
     }
 }
