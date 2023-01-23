@@ -35,6 +35,13 @@
                      </font>
                   </TextField>
                </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN">
+                     <color>
+                        <Color opacity="0.20610687136650085" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="210.0">
                <children>
@@ -47,6 +54,13 @@
                      </font>
                   </PasswordField>
                </children>
+               <effect>
+                  <DropShadow blurType="GAUSSIAN">
+                     <color>
+                        <Color opacity="0.20610687136650085" />
+                     </color>
+                  </DropShadow>
+               </effect>
             </HBox>
             <Label fx:id="connexionLabel" style="-fx-font-weight: bold;" text="Label" textAlignment="CENTER" textFill="RED" visible="false" wrapText="true" />
             <Button fx:id="connect" alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#ss" prefHeight="37.0" prefWidth="218.0" style="-fx-background-color: #f0f0f0; -fx-background-radius: 30;" text="Valider" textAlignment="CENTER">
@@ -54,9 +68,9 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <effect>
-                  <DropShadow blurType="GAUSSIAN" height="26.86" radius="10.7325" width="18.07">
+                  <DropShadow blurType="GAUSSIAN" height="22.47" radius="9.635" width="18.07">
                      <color>
-                        <Color opacity="0.6450381875038147" />
+                        <Color opacity="0.33969467878341675" />
                      </color>
                   </DropShadow>
                </effect>
