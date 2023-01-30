@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -7,19 +8,34 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SecondaryController">
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SecondaryController">
    <children>
       <ToolBar fx:id="toolbar" prefHeight="40.0" prefWidth="200.0">
         <items>
           <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
             <HBox fx:id="spacer" alignment="CENTER" prefWidth="200.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="TOP" text="&lt;NodeName&gt;" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS" />
+                  <Label fx:id="nodeNameLabel" alignment="CENTER" contentDisplay="TOP" text="&lt;NodeName&gt;" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS" />
                </children></HBox>
             <Separator orientation="VERTICAL" prefHeight="20.0" />
             <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" text="NAME" />
             <Button fx:id="btnDeco" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deco" text="Déconnexion" />
         </items>
       </ToolBar>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label text="Mes services" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="editButton" mnemonicParsing="false" prefWidth="80.0" text="Editer">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="readButton" mnemonicParsing="false" prefWidth="80.0" text="Consulter" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </VBox>

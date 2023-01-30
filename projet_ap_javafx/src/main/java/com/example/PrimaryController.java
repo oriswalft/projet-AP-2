@@ -1,8 +1,6 @@
 package com.example;
 
 import java.io.IOException;
-
-
 import javafx.scene.control.Label;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -12,6 +10,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
 
 public class PrimaryController {
@@ -32,6 +32,22 @@ public class PrimaryController {
 
     @FXML
     void ss(ActionEvent action) throws IOException{
+        login();
+    }
+
+    @FXML
+    void enterKeyPressed(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            try {
+                login();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void login() throws IOException{
+
         String us = username.getText();
         String pw = password.getText();
 
@@ -51,7 +67,8 @@ public class PrimaryController {
 
             shake(username);
             shake(password);
-            password.setStyle("-fx-border-color : #ff0000");
+            
+            password.setStyle("-fx-border-color : #ff0000; -fx-border-radius : 50; -fx-background-radius:50;");
         }
     }
 
@@ -61,7 +78,9 @@ public class PrimaryController {
         
         tTrans1.setDuration(Duration.millis(200));
 
-        tTrans1.setByX(25);
+        tTrans1.setFromX(-50);
+        tTrans1.setToX(25);
+
         tTrans1.setCycleCount(4);
         tTrans1.setAutoReverse(true);
 

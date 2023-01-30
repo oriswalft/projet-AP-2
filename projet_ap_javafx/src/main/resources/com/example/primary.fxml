@@ -45,7 +45,7 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="40.0" prefWidth="210.0">
                <children>
-                  <PasswordField fx:id="password" prefHeight="25.0" prefWidth="298.0" promptText="Mot de passe" style="-fx-background-radius: 20;">
+                  <PasswordField fx:id="password" onKeyPressed="#enterKeyPressed" prefHeight="25.0" prefWidth="298.0" promptText="Mot de passe" style="-fx-background-radius: 20;">
                      <HBox.margin>
                         <Insets bottom="50.0" />
                      </HBox.margin>

@@ -22,12 +22,17 @@ public class SecondaryController {
     @FXML
     private HBox spacer;
 
+    @FXML
+    private Label nodeNameLabel;
+
 
     public void changeInfos() {
         HBox.setHgrow(spacer, Priority.ALWAYS);
+        nodeNameLabel.setText("Accueil");
 
         String type_agent = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
-        username.setText("M. " + User.getNOM() + " " + User.getPRENOM() + " | " + type_agent);
+        String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
+        username.setText(sexe + User.getNOM() + " " + User.getPRENOM() + " | " + type_agent);
     }
 
     @FXML
