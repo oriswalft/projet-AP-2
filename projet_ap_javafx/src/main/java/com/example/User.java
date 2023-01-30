@@ -55,4 +55,13 @@ public class User {
     public static int getTYPE_AGENT() {
         return TYPE_AGENT;
     }
+
+    public static void deco(){
+        User.MATRICULE = null;
+        User.GENRE = 0;
+        User.NOM = null;
+        User.PRENOM = null;
+        User.TYPE_VEHICULE = 0;
+        User.TYPE_AGENT = 0;
+    }
 }

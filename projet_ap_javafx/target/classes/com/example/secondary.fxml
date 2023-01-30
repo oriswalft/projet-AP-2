@@ -12,10 +12,13 @@
       <ToolBar fx:id="toolbar" prefHeight="40.0" prefWidth="200.0">
         <items>
           <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
-            <HBox fx:id="spacer" prefWidth="200.0" />
+            <HBox fx:id="spacer" alignment="CENTER" prefWidth="200.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="TOP" text="&lt;NodeName&gt;" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS" />
+               </children></HBox>
             <Separator orientation="VERTICAL" prefHeight="20.0" />
             <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" text="NAME" />
-            <Button fx:id="btnDeco" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" text="Déconnexion" />
+            <Button fx:id="btnDeco" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deco" text="Déconnexion" />
         </items>
       </ToolBar>
    </children>
