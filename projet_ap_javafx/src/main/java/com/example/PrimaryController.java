@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
@@ -36,7 +38,12 @@ public class PrimaryController {
         if (id.validKey(us, pw)){   // Compare la paire saisie, et passe à l'écran suivant si valide.
             System.out.println("L'authentification a réussi !");
 
-            App.setRoot("secondary");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+            Parent root = loader.load();
+
+            SecondaryController secondaryController = loader.getController();
+            secondaryController.changeInfos();
+            connect.getScene().setRoot(root);
 
         } else {                    // En cas d'échec.
             connexionLabel.setText("L'authentification a échoué!");

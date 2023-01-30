@@ -11,9 +11,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Identification {
-    private final String dbURL = "jdbc:mysql://localhost:3306/ap";
-    private final String dbUsername = "root";
-    private final String dbMDP = "Thomas1003";
+
+    // TODO: changer systématiquement l'ip car adressage DHCP et non statique
+    private final String dbURL = "jdbc:mysql://172.16.107.21:3306/projetap";
+    private final String dbUsername = "gsb";
+    private final String dbMDP = "";
     private User user;
 
     private Connection conn;
