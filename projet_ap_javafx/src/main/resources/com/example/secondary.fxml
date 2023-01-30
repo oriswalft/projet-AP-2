@@ -12,7 +12,7 @@
    <children>
       <ToolBar fx:id="toolbar" prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button fx:id="btnHome" mnemonicParsing="false" text="Home" />
+          <Button fx:id="btnHome" mnemonicParsing="false" onAction="#goToHome" text="Home" />
             <HBox fx:id="spacer" alignment="CENTER" prefWidth="200.0">
                <children>
                   <Label fx:id="nodeNameLabel" alignment="CENTER" contentDisplay="TOP" text="&lt;NodeName&gt;" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS" />
@@ -22,17 +22,17 @@
             <Button fx:id="btnDeco" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deco" text="Déconnexion" />
         </items>
       </ToolBar>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+      <VBox fx:id="screenVBox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
          <children>
             <Label text="Mes services" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="editButton" mnemonicParsing="false" prefWidth="80.0" text="Editer">
+                  <Button fx:id="editButton" mnemonicParsing="false" onAction="#goToEdit" prefWidth="80.0" text="Editer">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="readButton" mnemonicParsing="false" prefWidth="80.0" text="Consulter" />
+                  <Button fx:id="readButton" mnemonicParsing="false" onAction="#goToRead" prefWidth="80.0" text="Consulter" />
                </children>
             </HBox>
          </children>
