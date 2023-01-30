@@ -18,7 +18,7 @@
                   <Label fx:id="nodeNameLabel" alignment="CENTER" contentDisplay="TOP" text="&lt;NodeName&gt;" textAlignment="CENTER" wrapText="true" HBox.hgrow="ALWAYS" />
                </children></HBox>
             <Separator orientation="VERTICAL" prefHeight="20.0" />
-            <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" text="NAME" />
+            <Label fx:id="username" alignment="TOP_RIGHT" contentDisplay="RIGHT" text="&lt;name | type&gt;" />
             <Button fx:id="btnDeco" alignment="TOP_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#deco" text="Déconnexion" />
         </items>
       </ToolBar>

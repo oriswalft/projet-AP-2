@@ -78,7 +78,7 @@ public class PrimaryController {
         
         tTrans1.setDuration(Duration.millis(200));
 
-        tTrans1.setFromX(-50);
+        tTrans1.setFromX(0);
         tTrans1.setToX(25);
 
         tTrans1.setCycleCount(4);
