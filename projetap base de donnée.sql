@@ -16,28 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `frais forfaitisés`
+-- Table structure for table `frais_forfaitises`
 --
 
-DROP TABLE IF EXISTS `frais forfaitisés`;
+DROP TABLE IF EXISTS `frais_forfaitises`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `frais forfaitisés` (
+CREATE TABLE `frais_forfaitises` (
   `id_frais forfaitisés` int NOT NULL AUTO_INCREMENT,
   `Nom du frais` varchar(45) NOT NULL,
-  `Date` date NOT NULL,
   `Prix` double NOT NULL,
   PRIMARY KEY (`id_frais forfaitisés`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `frais forfaitisés`
+-- Dumping data for table `frais_forfaitises`
 --
 
-LOCK TABLES `frais forfaitisés` WRITE;
-/*!40000 ALTER TABLE `frais forfaitisés` DISABLE KEYS */;
-/*!40000 ALTER TABLE `frais forfaitisés` ENABLE KEYS */;
+LOCK TABLES `frais_forfaitises` WRITE;
+/*!40000 ALTER TABLE `frais_forfaitises` DISABLE KEYS */;
+INSERT INTO `frais_forfaitises` VALUES (1,'Nuitée',80),(2,'Repas midi ',29);
+/*!40000 ALTER TABLE `frais_forfaitises` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -119,7 +119,7 @@ CREATE TABLE `utilisateur` (
 
 LOCK TABLES `utilisateur` WRITE;
 /*!40000 ALTER TABLE `utilisateur` DISABLE KEYS */;
-INSERT INTO `utilisateur` VALUES ('cdbcf45f-a098-11ed-9358-00155dba2bde',0,'BARGE','AYMERIC','aymeric.barge','687930558e78ea4c16e6d65500ab8f46debd564a65a5e5c9f57b84c6e7297f69',1,4),('ebb0f6be-a098-11ed-9358-00155dba2bde',0,'DINDIN','THOMAS','thomas.dindin','8c9a013ab70c0434313e3e881c310b9ff24aff1075255ceede3f2c239c231623',1,3),('efa4fb1c-a098-11ed-9358-00155dba2bde',0,'CACHEUX','CONSTANT','constant.cacheux','9a82da353db492a8e2892334de51fec091555cb2c4cc996e28bfd02ec4f1a9ad',2,2);
+INSERT INTO `utilisateur` VALUES ('c0c170ee-a0a3-11ed-9358-00155dba2bde',1,'CABESTAING','MAITE','maite.cabestaing','a3ee9d88c3e0ee59bdc9dfe051e18d2d5d38ac0eda8f804f50226bdef4a78848',2,3),('cdbcf45f-a098-11ed-9358-00155dba2bde',0,'BARGE','AYMERIC','aymeric.barge','687930558e78ea4c16e6d65500ab8f46debd564a65a5e5c9f57b84c6e7297f69',1,4),('ebb0f6be-a098-11ed-9358-00155dba2bde',0,'DINDIN','THOMAS','thomas.dindin','8c9a013ab70c0434313e3e881c310b9ff24aff1075255ceede3f2c239c231623',1,3),('efa4fb1c-a098-11ed-9358-00155dba2bde',0,'CACHEUX','CONSTANT','constant.cacheux','9a82da353db492a8e2892334de51fec091555cb2c4cc996e28bfd02ec4f1a9ad',2,2);
 /*!40000 ALTER TABLE `utilisateur` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -132,4 +132,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-30 13:29:14
+-- Dump completed on 2023-01-30 16:43:05
