@@ -44,6 +44,7 @@ public class Identification {
         try {
             Statement req = conn.createStatement();
             // Requête SQL pour récupérer les paires N.U / MDP
+            // TODO: Modifier la réponse pour n'avoir que l'ID
             ResultSet res = req.executeQuery("SELECT * FROM utilisateur");
 
             // Parcours chaque couple et vérifie s'il y a un match 
