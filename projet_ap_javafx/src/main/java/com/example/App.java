@@ -4,6 +4,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +22,13 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setTitle("Projet AP");
         stage.setMaximized(true);
+
+        stage.setOnCloseRequest(evt -> {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Fermeture de session");
+            alert.setHeaderText("Souhaitez vous vraiment quitter ?");
+            alert.showAndWait().filter(r -> r != ButtonType.OK).ifPresent(r->evt.consume());
+        });
 
         stage.show();
     }

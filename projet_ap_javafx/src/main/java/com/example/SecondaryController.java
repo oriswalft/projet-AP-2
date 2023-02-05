@@ -10,7 +10,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class SecondaryController {
@@ -24,15 +23,10 @@ public class SecondaryController {
     @FXML
     private Label username;
 
-    @FXML
-    private HBox spacer;
-
     
     @FXML
     private Button editButton;
 
-    @FXML
-    private Label nodeNameLabel;
 
     @FXML
     private Button readButton;
@@ -41,9 +35,6 @@ public class SecondaryController {
     private VBox screenVBox;
 
     public void changeInfos() {
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-        nodeNameLabel.setText("Accueil");
-
         String type_agent = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
         String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
         username.setText(sexe + User.getNOM() + " " + User.getPRENOM() + " | " + type_agent);
@@ -57,7 +48,6 @@ public class SecondaryController {
 
     @FXML
     void goToEdit(ActionEvent event) {
-        nodeNameLabel.setText("Edition de la fiche de frais");
         LocalDate date = LocalDate.now();
 
         VBox box = new VBox();
@@ -80,12 +70,10 @@ public class SecondaryController {
         HBox.setMargin(buttonAlign, new Insets(0,0,10,10));
 
         screenVBox.getChildren().setAll(new Label(" Vos options :"), buttonAlign);
-        nodeNameLabel.setText("Accueil");
     }
 
     @FXML 
     void goToRead(ActionEvent event){
-        nodeNameLabel.setText("Consulation des fiches de frais précédentes");
         screenVBox.getChildren().setAll(new VBox());
 
     }

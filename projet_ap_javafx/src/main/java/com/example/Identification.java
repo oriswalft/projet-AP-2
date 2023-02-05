@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class Identification {
 
     // TODO: changer systématiquement l'ip car adressage DHCP et non statique
-    private final String dbURL = "jdbc:mysql://172.16.107.21:3306/projetap";
+    private final String dbURL = "jdbc:mysql://172.16.107.8:3306/projetap";
     private final String dbUsername = "gsb";
     private final String dbMDP = "";
     private User user;
@@ -50,7 +50,7 @@ public class Identification {
             // Parcours chaque couple et vérifie s'il y a un match 
             while (res.next()){
                 String nom = res.getString("username");
-                String mdp = res.getString("password");
+                String mdp = res.getString("mot_de_passe");
 
                 if (nom.equals(username)){
                     if (mdp.equals(hashedPw)){
