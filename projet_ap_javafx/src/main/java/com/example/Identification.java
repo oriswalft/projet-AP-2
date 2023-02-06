@@ -20,21 +20,22 @@ public class Identification {
 
     private Connection conn;
 
-    Identification(){
+    Identification() {
         // Essaye de se connecter à la base de donnée
         try {
             conn = DriverManager.getConnection(dbURL, dbUsername, dbMDP);
-        } catch (SQLException e ){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     // Fonction qui vérifie que la paire nom d'utilisateur/ mot de passe est valide.
-    public boolean validKey(String username, String password){
-        boolean matching = false; 
-        String hashedPw="";
-        
-        // Récupère le hash du mot de passe saisi, puis l'affecte à la variable hashedPw. Try/catch car il faut gérer les exceptions
+    public boolean validKey(String username, String password) {
+        boolean matching = false;
+        String hashedPw = "";
+
+        // Récupère le hash du mot de passe saisi, puis l'affecte à la variable
+        // hashedPw. Try/catch car il faut gérer les exceptions
         try {
             hashedPw = hashPassword(password.trim());
         } catch (NoSuchAlgorithmException e) {
@@ -45,15 +46,16 @@ public class Identification {
             Statement req = conn.createStatement();
             // Requête SQL pour récupérer les paires N.U / MDP
             // TODO: Modifier la réponse pour n'avoir que l'ID
-            ResultSet res = req.executeQuery("SELECT * FROM utilisateur");
+            ResultSet res = req.executeQuery(
+                    "SELECT username,mot_de_passe,nom,genre,prenom,nom_agent,Nom_vehicule FROM projetap.utilisateurjoin type_agent on id_type_agent = fk_type_agentjoin type_vehicule on id_type_vehicule = fk_type_vehicule;");
 
-            // Parcours chaque couple et vérifie s'il y a un match 
-            while (res.next()){
+            // Parcours chaque couple et vérifie s'il y a un match
+            while (res.next()) {
                 String nom = res.getString("username");
                 String mdp = res.getString("mot_de_passe");
 
-                if (nom.equals(username)){
-                    if (mdp.equals(hashedPw)){
+                if (nom.equals(username)) {
+                    if (mdp.equals(hashedPw)) {
                         matching = true;
                         user = new User(res);
                     }
@@ -65,27 +67,26 @@ public class Identification {
         return matching;
     }
 
-    private String hashPassword(String pw) throws NoSuchAlgorithmException{
+    private String hashPassword(String pw) throws NoSuchAlgorithmException {
         String res = "";
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
-        byte[] messageDigest =md.digest(pw.getBytes(StandardCharsets.UTF_8));
+        byte[] messageDigest = md.digest(pw.getBytes(StandardCharsets.UTF_8));
 
         res = convertToHex(messageDigest);
         return res;
     }
 
-
     private String convertToHex(final byte[] messageDigest) {
         BigInteger bigint = new BigInteger(1, messageDigest);
         String hexText = bigint.toString(16);
         while (hexText.length() < 32) {
-           hexText = "0".concat(hexText);
+            hexText = "0".concat(hexText);
         }
         return hexText;
-     }
-     
-     public User getUser(){
+    }
+
+    public User getUser() {
         return this.user;
-     }
+    }
 }
