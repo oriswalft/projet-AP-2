@@ -47,7 +47,7 @@ public class Identification {
             // Requête SQL pour récupérer les paires N.U / MDP
             // TODO: Modifier la réponse pour n'avoir que l'ID
             ResultSet res = req.executeQuery(
-                    "SELECT username,mot_de_passe,nom,genre,prenom,nom_agent,Nom_vehicule FROM projetap.utilisateurjoin type_agent on id_type_agent = fk_type_agentjoin type_vehicule on id_type_vehicule = fk_type_vehicule;");
+                    "SELECT matricule,username,mot_de_passe,nom,genre,prenom,id_type_vehicule,id_type_agent FROM projetap.utilisateur join type_agent on id_type_agent = fk_type_agent join type_vehicule on id_type_vehicule = fk_type_vehicule;");
 
             // Parcours chaque couple et vérifie s'il y a un match
             while (res.next()) {
