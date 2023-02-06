@@ -1,0 +1,13 @@
+.userInfoBtn {
+    -fx-background-color : none;
+}
+
+.userInfoBtn:hover {
+    -fx-background-color : #B9D5E7;
+    -fx-text-fill : black;
+}
+
+.selectedBtn {
+    -fx-background-color : #B9D5E7;
+    -fx-text-fill : black;
+}

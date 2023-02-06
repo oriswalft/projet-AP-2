@@ -32,12 +32,16 @@ public class SecondaryController {
     private Button readButton;
 
     @FXML
+    private Label type_agent;
+
+    @FXML
     private VBox screenVBox;
 
     public void changeInfos() {
-        String type_agent = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
+        String type_agent_str = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
         String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
-        username.setText(sexe + User.getNOM() + " " + User.getPRENOM() + " | " + type_agent);
+        username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
+        type_agent.setText(type_agent_str);
     }
 
     @FXML
