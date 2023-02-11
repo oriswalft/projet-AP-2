@@ -2,7 +2,8 @@ package com.example.Controllers;
 
 import java.io.IOException;
 
-import com.example.Identification;
+import com.example.App;
+import com.example.PartieSQL.Identification;
 
 import javafx.scene.control.Label;
 import javafx.animation.TranslateTransition;
@@ -57,12 +58,16 @@ public class PrimaryController {
         if (id.validKey(us, pw)){   // Compare la paire saisie, et passe à l'écran suivant si valide.
             System.out.println("L'authentification a réussi !");
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("secondary.fxml"));
-            Parent root = loader.load();
-
-            SecondaryController secondaryController = loader.getController();
-            secondaryController.changeInfos();
-            connect.getScene().setRoot(root);
+            FXMLLoader loader = new FXMLLoader(App.class.getResource("secondary.fxml"));
+            try {
+                Parent root = loader.load();
+                SecondaryController secondaryController = loader.getController();
+                secondaryController.changeInfos();
+                connect.getScene().setRoot(root);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            
 
         } else {                    // En cas d'échec.
             connexionLabel.setText("L'authentification a échoué!");

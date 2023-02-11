@@ -13,13 +13,16 @@ public class User {
     private static int TYPE_AGENT;
 
     public User(ResultSet res) {
+
         try {
-            User.MATRICULE = res.getString("matricule");
-            User.GENRE = res.getInt("genre");
-            User.NOM = res.getString("nom");
-            User.PRENOM = res.getString("prenom");
-            User.TYPE_VEHICULE = res.getInt("id_type_vehicule");
-            User.TYPE_AGENT = res.getInt("id_type_agent");
+            if (res.next()){
+                User.MATRICULE = res.getString("matricule");
+                User.GENRE = res.getInt("genre");
+                User.NOM = res.getString("nom");
+                User.PRENOM = res.getString("prenom");
+                User.TYPE_VEHICULE = res.getInt("id_type_vehicule");
+                User.TYPE_AGENT = res.getInt("id_type_agent");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

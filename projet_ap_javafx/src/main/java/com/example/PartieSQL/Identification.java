@@ -45,13 +45,26 @@ public class Identification {
             Statement req = conn.createStatement();
             // Requête SQL pour valider le couple et récupérer le matricule. Renvoie null si aucun couple n'est trouvé
             ResultSet res = req.executeQuery(
-                    "SELECT DISTINCT matricule FROM projetap.utilisateur WHERE mot_de_passe = '" + hashedPw + "'' AND username = '"+ username+ "';");
+                    "SELECT DISTINCT matricule FROM projetap.utilisateur WHERE mot_de_passe = '" + hashedPw + "' AND username = '"+ username+ "';");
 
-            
-            if (res.getString("matricule").equals(null)){
-                return false;
+            if (res.next()){
+                if (res.getString("matricule").equals(null)){
+                    System.out.println("ici");
+                    return false;
+                } else {
+
+                    // TODO: requête avec INNER JOIN à modifier, imprécis
+                    ResultSet user_info = req.executeQuery(
+                        "SELECT DISTINCT matricule, genre, nom, prenom, id_type_vehicule, id_type_agent FROM utilisateur INNER JOIN type_vehicule ON id_type_vehicule = fk_type_vehicule INNER JOIN type_agent ON id_type_agent = fk_type_agent WHERE matricule = '" + res.getString("matricule") +  "';"
+                    );
+
+                    @SuppressWarnings("unused") // TODO: Fix ça
+                    User usr = new User(user_info);
+
+                    return true;
+                }
             } else {
-                return true;
+                return false;
             }
         } catch (SQLException e) {
             e.printStackTrace();
