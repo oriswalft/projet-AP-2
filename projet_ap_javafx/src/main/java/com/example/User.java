@@ -12,7 +12,7 @@ public class User {
     private static int TYPE_VEHICULE;
     private static int TYPE_AGENT;
 
-    User(ResultSet res) {
+    public User(ResultSet res) {
         try {
             User.MATRICULE = res.getString("matricule");
             User.GENRE = res.getInt("genre");
