@@ -16,6 +16,35 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `fiches_de_frais`
+--
+
+DROP TABLE IF EXISTS `fiches_de_frais`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `fiches_de_frais` (
+  `id_fk_utilisateur` int NOT NULL AUTO_INCREMENT,
+  `fk_utilisateurs` varchar(256) NOT NULL,
+  `Date` int NOT NULL,
+  `Nuitée` int DEFAULT NULL,
+  `Kilometre` int DEFAULT NULL,
+  PRIMARY KEY (`id_fk_utilisateur`),
+  KEY `fk_utilsateurs1_idx` (`fk_utilisateurs`),
+  CONSTRAINT `fk_utilsateurs1` FOREIGN KEY (`fk_utilisateurs`) REFERENCES `utilisateur` (`matricule`)
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fiches_de_frais`
+--
+
+LOCK TABLES `fiches_de_frais` WRITE;
+/*!40000 ALTER TABLE `fiches_de_frais` DISABLE KEYS */;
+INSERT INTO `fiches_de_frais` VALUES (1,'c0c170ee-a0a3-11ed-9358-00155dba2bde',1,1,1),(2,'cdbcf45f-a098-11ed-9358-00155dba2bde',1,1,1),(3,'ebb0f6be-a098-11ed-9358-00155dba2bde',1,1,1),(4,'efa4fb1c-a098-11ed-9358-00155dba2bde',1,1,1);
+/*!40000 ALTER TABLE `fiches_de_frais` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `frais_forfaitises`
 --
 
@@ -41,27 +70,27 @@ INSERT INTO `frais_forfaitises` VALUES (1,'Nuitée',80),(2,'Repas midi ',29);
 UNLOCK TABLES;
 
 --
--- Table structure for table `type-agent`
+-- Table structure for table `type_agent`
 --
 
-DROP TABLE IF EXISTS `type-agent`;
+DROP TABLE IF EXISTS `type_agent`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `type-agent` (
-  `id_type-agent` int unsigned NOT NULL AUTO_INCREMENT,
-  `nom` varchar(256) NOT NULL,
-  PRIMARY KEY (`id_type-agent`)
+CREATE TABLE `type_agent` (
+  `id_type_agent` int unsigned NOT NULL AUTO_INCREMENT,
+  `nom_agent` varchar(256) NOT NULL,
+  PRIMARY KEY (`id_type_agent`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `type-agent`
+-- Dumping data for table `type_agent`
 --
 
-LOCK TABLES `type-agent` WRITE;
-/*!40000 ALTER TABLE `type-agent` DISABLE KEYS */;
-INSERT INTO `type-agent` VALUES (1,'visiteur'),(2,'comptable');
-/*!40000 ALTER TABLE `type-agent` ENABLE KEYS */;
+LOCK TABLES `type_agent` WRITE;
+/*!40000 ALTER TABLE `type_agent` DISABLE KEYS */;
+INSERT INTO `type_agent` VALUES (1,'visiteur'),(2,'comptable');
+/*!40000 ALTER TABLE `type_agent` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -73,7 +102,7 @@ DROP TABLE IF EXISTS `type_vehicule`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `type_vehicule` (
   `id_type_vehicule` int unsigned NOT NULL AUTO_INCREMENT,
-  `Nom` varchar(256) NOT NULL,
+  `Nom_vehicule` varchar(256) NOT NULL,
   `Cout` double NOT NULL,
   PRIMARY KEY (`id_type_vehicule`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -102,13 +131,13 @@ CREATE TABLE `utilisateur` (
   `nom` varchar(256) NOT NULL,
   `prenom` varchar(256) NOT NULL,
   `username` varchar(256) NOT NULL,
-  `password` varchar(256) NOT NULL,
+  `mot_de_passe` varchar(256) NOT NULL,
   `fk_type_agent` int unsigned DEFAULT NULL,
   `fk_type_vehicule` int unsigned DEFAULT NULL,
   PRIMARY KEY (`matricule`),
   KEY `fk_véhicule_idx` (`fk_type_vehicule`),
   KEY `fk_agent_idx` (`fk_type_agent`),
-  CONSTRAINT `fk_agent` FOREIGN KEY (`fk_type_agent`) REFERENCES `type-agent` (`id_type-agent`),
+  CONSTRAINT `fk_agent` FOREIGN KEY (`fk_type_agent`) REFERENCES `type_agent` (`id_type_agent`),
   CONSTRAINT `fk_véhicule` FOREIGN KEY (`fk_type_vehicule`) REFERENCES `type_vehicule` (`id_type_vehicule`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -132,4 +161,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-30 16:43:05
+-- Dump completed on 2023-02-11 19:33:39
