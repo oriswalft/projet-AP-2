@@ -1,6 +1,9 @@
-package com.example;
+package com.example.Controllers;
 
 import java.io.IOException;
+
+import com.example.Identification;
+
 import javafx.scene.control.Label;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;

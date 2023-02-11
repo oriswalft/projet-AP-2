@@ -20,7 +20,7 @@ public class Identification {
 
     private Connection conn;
 
-    Identification() {
+    public Identification() {
         // Essaye de se connecter à la base de donnée
         try {
             conn = DriverManager.getConnection(dbURL, dbUsername, dbMDP);
@@ -65,6 +65,19 @@ public class Identification {
             e.printStackTrace();
         }
         return matching;
+    }
+
+    public String fetchName(){
+        try {
+            Statement req = conn.createStatement();
+            ResultSet res = req.executeQuery("SELECT nom, prenom FROM projetap.utilisateur");
+
+            return res.getString("nom") + " " + res.getString("prenom");
+        } catch (Exception e ){
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     private String hashPassword(String pw) throws NoSuchAlgorithmException {
