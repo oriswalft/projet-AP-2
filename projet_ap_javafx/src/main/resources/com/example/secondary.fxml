@@ -3,14 +3,15 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.SecondaryController">
+
+<HBox xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.SecondaryController">
    <children>
-      <VBox fx:id="slidingMenuVBox" alignment="TOP_CENTER" layoutX="-3.0" layoutY="-1.0" prefHeight="400.0" prefWidth="262.0" style="-fx-background-color: #345A93;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox fx:id="slidingMenuVBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="262.0" style="-fx-background-color: #345A93;">
          <children>
             <Circle fill="#fcfeff46" radius="59.0" stroke="BLACK" strokeType="INSIDE">
                <VBox.margin>
@@ -20,19 +21,21 @@
             <Label fx:id="username" alignment="CENTER" prefHeight="18.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="name" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
-               </font></Label>
+               </font>
+            </Label>
             <Label fx:id="type_agent" text="agent_type" textFill="WHITE">
                <font>
                   <Font size="10.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="20.0" />
-               </VBox.margin></Label>
+               </VBox.margin>
+            </Label>
             <Button fx:id="btnDeco" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deco" styleClass="userInfoBtn" text="Déconnexion" textFill="WHITE" />
             <Button fx:id="editButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" styleClass="userInfoBtn" text="Editer fiches de frais" textFill="WHITE" />
             <Button fx:id="readButton" mnemonicParsing="false" onAction="#goToRead" prefHeight="26.0" prefWidth="291.0" styleClass="userInfoBtn" text="Consulter fiche de frais" textFill="WHITE" />
          </children>
       </VBox>
-      <VBox fx:id="screenVBox" layoutX="190.0" layoutY="-2.0" maxWidth="1.7976931348623157E308" prefHeight="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="189.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="screenVBox" maxWidth="1.7976931348623157E308" prefHeight="400.0" />
    </children>
-</AnchorPane>
+</HBox>
