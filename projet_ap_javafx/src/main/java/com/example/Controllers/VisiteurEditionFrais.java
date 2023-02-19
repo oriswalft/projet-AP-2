@@ -21,7 +21,11 @@ import javafx.scene.layout.VBox;
 
 public class VisiteurEditionFrais {
     private Identification conn;
-    private ObservableList<FraisForfaitaires> list = FXCollections.observableArrayList();;
+    private ObservableList<FraisForfaitaires> list = FXCollections.observableArrayList();
+
+    // TODO: Créer un système pour choisir la fiche à éditer
+    //       Créer un mode pour entrer des frais hors forfait
+    //       Créer un lien avec les kilomètres depuis la base de données
     
 
     public VisiteurEditionFrais() {
