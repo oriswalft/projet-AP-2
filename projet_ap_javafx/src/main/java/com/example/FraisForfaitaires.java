@@ -1,23 +1,27 @@
 package com.example;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 public class FraisForfaitaires {
     private String nom;
-    private int qte;
+    private SimpleIntegerProperty qte;
     private double montantU;
-    private double total;
+    private SimpleDoubleProperty total;
 
     public FraisForfaitaires(String nom, Double montantU) {
         this.nom = nom;
-        this.qte = 0;
+        this.qte = new SimpleIntegerProperty(0);
         this.montantU = montantU;
-        this.total = qte * montantU;
+        this.total = new SimpleDoubleProperty(0);
+        this.total.bind(qte.multiply(getMontantU()));
     }
 
     public String getNom() {
         return nom;
     }
 
-    public int getQte() {
+    public SimpleIntegerProperty getQte() {
         return qte;
     }
 
@@ -25,20 +29,11 @@ public class FraisForfaitaires {
         return montantU;
     }
 
-    public double getTotal(){
+    public SimpleDoubleProperty getTotal(){
         return this.total;
     }
 
     public void setSpinnerValue(Integer newValue) {
-        this.qte = newValue;
-    }
-
-    public void updateTotal(){
-        this.total = this.qte * this.montantU;
-        System.out.println(total);
-    }
-
-    
-
-    
+        this.qte.set(newValue);
+    }    
 }

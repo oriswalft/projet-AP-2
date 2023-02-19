@@ -8,11 +8,13 @@ import com.example.PartieSQL.Identification;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
@@ -55,17 +57,29 @@ public class VisiteurEditionFrais {
 
         VBox box = new VBox();
         GridPane grid = new GridPane();
-        grid.setHgap(20);
+        for (int i = 0; i < 4; i++){
+            ColumnConstraints col = new ColumnConstraints();
+            col.setPercentWidth(25);
+            col.setHalignment(HPos.CENTER);
+            grid.getColumnConstraints().add(col);
+        }
         int rowCount = 0;
 
         for (FraisForfaitaires i : list){
             grid.add(new Label(i.getNom()), 0, rowCount);
-            grid.add(createIntegerSpinner(0, 0, 31), 1, rowCount);
+            Spinner<Integer> spin = createIntegerSpinner(0, 0, 31);
+            spin.valueProperty().addListener((obs, oldValue, newValue) -> {i.setSpinnerValue(newValue);});
+            grid.add(spin, 1, rowCount);
             grid.add(new Label(Double.toString(i.getMontantU())), 2, rowCount);
-            grid.add(new Label(Double.toString(i.getTotal())), 3, rowCount);
+
+            Label totLabel = new Label();
+            totLabel.textProperty().bind(i.getTotal().asString());
+            grid.add(totLabel, 3, rowCount);
 
             rowCount++;
         }
+
+        grid.setGridLinesVisible(true);
 
         box.getChildren().addAll(new Label("Frais forfaitisés :"), grid);
         box.setPadding(new Insets(50));
