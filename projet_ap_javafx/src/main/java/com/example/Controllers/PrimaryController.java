@@ -64,6 +64,7 @@ public class PrimaryController {
                 SecondaryController secondaryController = loader.getController();
                 secondaryController.changeInfos();
                 connect.getScene().setRoot(root);
+                id.endConnection();
             } catch (Exception e) {
                 e.printStackTrace();
             }

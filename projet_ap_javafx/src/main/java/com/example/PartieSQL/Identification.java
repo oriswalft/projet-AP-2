@@ -11,18 +11,23 @@ import com.example.User;
 
 public class Identification {
 
-    // TODO: changer systématiquement l'ip car adressage DHCP et non statique
-    private final String dbURL = "jdbc:mysql://192.168.1.65:3306/projetap";
-    private final String dbUsername = "gsb";
+    private final String dbURL = "jdbc:mysql://127.0.0.1:3306/projetap";
     private final String dbMDP = "";
-    private User user;
 
     private Connection conn;
 
     public Identification() {
         // Essaye de se connecter à la base de donnée
         try {
-            conn = DriverManager.getConnection(dbURL, dbUsername, dbMDP);
+            conn = DriverManager.getConnection(dbURL, "gsb", dbMDP);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Identification(String username){
+        try {
+            conn = DriverManager.getConnection(dbURL, username, dbMDP);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -49,7 +54,6 @@ public class Identification {
 
             if (res.next()){
                 if (res.getString("matricule").equals(null)){
-                    System.out.println("ici");
                     return false;
                 } else {
 
@@ -58,8 +62,7 @@ public class Identification {
                         "SELECT DISTINCT matricule, genre, nom, prenom, id_type_vehicule, id_type_agent FROM utilisateur INNER JOIN type_vehicule ON id_type_vehicule = fk_type_vehicule INNER JOIN type_agent ON id_type_agent = fk_type_agent WHERE matricule = '" + res.getString("matricule") +  "';"
                     );
 
-                    @SuppressWarnings("unused") // TODO: Fix ça
-                    User usr = new User(user_info);
+                    User.setUser(user_info);
 
                     return true;
                 }
@@ -72,7 +75,24 @@ public class Identification {
         return matching;
     }
 
-    public User getUser() {
-        return this.user;
+    public void endConnection() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet getFrais(){
+        try {
+            Statement req = conn.createStatement();
+            ResultSet res = req.executeQuery("SELECT name, cost from frais_forfaitises");
+
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 }

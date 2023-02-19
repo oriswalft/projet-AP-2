@@ -12,8 +12,7 @@ public class User {
     private static int TYPE_VEHICULE;
     private static int TYPE_AGENT;
 
-    public User(ResultSet res) {
-
+    public static void setUser(ResultSet res) {
         try {
             if (res.next()){
                 User.MATRICULE = res.getString("matricule");

@@ -28,11 +28,11 @@
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin></Label>
-            <Button fx:id="btnDeco" mnemonicParsing="false" onAction="#deco" prefHeight="26.0" prefWidth="274.0" styleClass="userInfoBtn" text="Déconnexion" textFill="WHITE" />
-            <Button fx:id="editButton" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" prefWidth="269.0" styleClass="userInfoBtn" text="Editer fiches de frais" textFill="WHITE" />
+            <Button fx:id="btnDeco" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deco" styleClass="userInfoBtn" text="Déconnexion" textFill="WHITE" />
+            <Button fx:id="editButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" styleClass="userInfoBtn" text="Editer fiches de frais" textFill="WHITE" />
             <Button fx:id="readButton" mnemonicParsing="false" onAction="#goToRead" prefHeight="26.0" prefWidth="291.0" styleClass="userInfoBtn" text="Consulter fiche de frais" textFill="WHITE" />
          </children>
       </VBox>
-      <VBox fx:id="screenVBox" layoutX="190.0" layoutY="-2.0" prefHeight="400.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="189.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <VBox fx:id="screenVBox" layoutX="190.0" layoutY="-2.0" maxWidth="1.7976931348623157E308" prefHeight="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="189.60000000000002" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
 </AnchorPane>

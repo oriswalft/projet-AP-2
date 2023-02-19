@@ -6,10 +6,10 @@ public class FraisForfaitaires {
     private double montantU;
     private double total;
 
-    public FraisForfaitaires(String nom, int qte) {
+    public FraisForfaitaires(String nom, Double montantU) {
         this.nom = nom;
-        this.qte = qte;
-        this.montantU = 80;
+        this.qte = 0;
+        this.montantU = montantU;
         this.total = qte * montantU;
     }
 

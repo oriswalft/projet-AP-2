@@ -1,14 +1,14 @@
 package com.example.Controllers;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.example.App;
 import com.example.FraisForfaitaires;
 import com.example.User;
+import com.example.PartieSQL.Identification;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,13 +19,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.util.Callback;
 
 public class SecondaryController {
 
@@ -50,6 +46,9 @@ public class SecondaryController {
     @FXML
     private VBox screenVBox;
 
+    @FXML
+    private VBox slidingMenuVBox;
+
     public void changeInfos() {
         String type_agent_str = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
         String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
@@ -57,6 +56,8 @@ public class SecondaryController {
         type_agent.setText(type_agent_str);
     }
 
+
+    
     private Spinner<Integer> createIntegerSpinner(int def, int min, int max){
         Spinner<Integer> spinner = new Spinner<>();
         SpinnerValueFactory<Integer> nuiteeSpinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min ,max, def );
@@ -66,6 +67,7 @@ public class SecondaryController {
 
         return spinner;
     }
+    
 
     @FXML
     void deco() throws IOException{
@@ -75,68 +77,28 @@ public class SecondaryController {
 
     @FXML
     void goToEdit(ActionEvent event) {
-        ObservableList<FraisForfaitaires> list = FXCollections.observableArrayList( 
-            new FraisForfaitaires("Nuitées", 1), 
-            new FraisForfaitaires("Repas midi", 15),
-            new FraisForfaitaires("Kilomètres", 0));
+        Identification conn = new Identification();
+        ResultSet res = conn.getFrais();
+
+        ObservableList<FraisForfaitaires> list = FXCollections.observableArrayList();
         
         //   LocalDate date = LocalDate.now();
 
         VBox box = new VBox();
+        GridPane grid = new GridPane();
 
-        // Création du tableau de frais forfaitaires
-        TableView<FraisForfaitaires> fraisForfaitaires =  new TableView<>();
-
-        // Création des colonnes du tableau 
-        TableColumn<FraisForfaitaires, String> nomFrais = new TableColumn<>("Frais forfaitaires");
-        TableColumn<FraisForfaitaires, Spinner<Integer>> qteFrais = new TableColumn<>("Quantité");
-        TableColumn<FraisForfaitaires, Double> montantUnitaire = new TableColumn<>("Montant unitaire");
-
-        // TODO: Update total pour qu'il match la valeur de la classe
-        TableColumn<FraisForfaitaires, Double> total = new TableColumn<>("Total");
-
-        // Création des ValueFactory
-        nomFrais.setCellValueFactory(new PropertyValueFactory<FraisForfaitaires, String>("nom"));
-
-        qteFrais.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FraisForfaitaires,Spinner<Integer>>,ObservableValue<Spinner<Integer>>>() {
-
-            @Override
-            public ObservableValue<Spinner<Integer>> call(CellDataFeatures<FraisForfaitaires, Spinner<Integer>> arg0) {
-                
-                FraisForfaitaires frais = arg0.getValue();
-                Spinner<Integer> spin;
-
-                if (arg0.getValue().getNom().equals("Kilomètres")) {
-                    spin = createIntegerSpinner(frais.getQte(), 0, 999999);
-                } else {
-                    spin = createIntegerSpinner(frais.getQte(), 0, 31);
-                }
-               // TODO: fix le beug de la boucle infinie  
-
-                spin.valueProperty().addListener((obs,oldValue, newValue) -> { frais.setSpinnerValue(newValue); frais.updateTotal(); fraisForfaitaires.refresh();});
-
-                return new SimpleObjectProperty<Spinner<Integer>>(spin);
+        try {
+            while (res.next()){
+                String nomFrais = res.getString("name");
+                Double coutFrais= res.getDouble("cost");
+                list.add(new FraisForfaitaires(nomFrais, coutFrais));
             }
-            
-        });
-        montantUnitaire.setCellValueFactory(new PropertyValueFactory<FraisForfaitaires, Double>("montantU"));
-        total.setCellValueFactory(new PropertyValueFactory<FraisForfaitaires, Double>("total"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        fraisForfaitaires.setMaxWidth(800);
-
-        fraisForfaitaires.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        fraisForfaitaires.setItems(list);
-
-        fraisForfaitaires.setFixedCellSize(25);
-        fraisForfaitaires.prefHeightProperty().bind(Bindings.size(fraisForfaitaires.getItems()).multiply(fraisForfaitaires.getFixedCellSize()).add(50));
-
-        fraisForfaitaires.getColumns().add(nomFrais);
-        fraisForfaitaires.getColumns().add(qteFrais);
-        fraisForfaitaires.getColumns().add(montantUnitaire);
-        fraisForfaitaires.getColumns().add(total);
-
-        box.getChildren().addAll(new Label("Frais forfaitisés :"), fraisForfaitaires);
+        box.getChildren().addAll(new Label("Frais forfaitisés :"));
+        list.forEach(e-> box.getChildren().add(new Label(e.getNom())));
         box.setPadding(new Insets(50));
         box.setAlignment(Pos.TOP_CENTER);
 
