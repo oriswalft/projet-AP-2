@@ -95,4 +95,19 @@ public class Identification {
         
         return null;
     }
+
+    public double fuelCost(){
+        try {
+            Statement req = conn.createStatement();
+            ResultSet res = req.executeQuery("SELECT Cout FROM type_vehicule WHERE id_type_vehicule = " + User.getTYPE_AGENT() + ";");
+            
+            while (res.next()){
+                return res.getDouble("Cout");
+            }
+
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+        return 0.0;
+    }
 }
