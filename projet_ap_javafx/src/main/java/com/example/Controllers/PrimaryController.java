@@ -32,6 +32,7 @@ public class PrimaryController {
     @FXML
     private Label connexionLabel;
 
+    // Connexion à la base de donnée 
     private final Identification id = new Identification();
 
     @FXML
@@ -39,7 +40,7 @@ public class PrimaryController {
         login();
     }
 
-    @FXML
+    @FXML   // Récupère les entrées clavier dans le champ de mot de passe et tente de se connecter si "entrée"
     void enterKeyPressed(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
             try {
@@ -59,12 +60,12 @@ public class PrimaryController {
             System.out.println("L'authentification a réussi !");
 
             FXMLLoader loader = new FXMLLoader(App.class.getResource("secondary.fxml"));
-            try {
+            try {   // Charge la classe du second controlleur et met à jour son contenu
                 Parent root = loader.load();
                 SecondaryController secondaryController = loader.getController();
                 secondaryController.changeInfos();
                 connect.getScene().setRoot(root);
-                id.endConnection();
+                id.endConnection(); // Déconnecte la connexion temporaire 'gsb' à la base de donnée et connecte avec les droits appropriés
             } catch (Exception e) {
                 e.printStackTrace();
             }

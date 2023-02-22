@@ -49,18 +49,20 @@ public class VisiteurEditionFrais {
         
     }
 
+    // Créé le spinner pour les champs de saisie de frais forfaitaire et définit la valeur minimale, maximale et par défaut. Le rend aussi éditable
     private Spinner<Integer> createIntegerSpinner(int def, int min, int max){
         Spinner<Integer> spinner = new Spinner<>();
-        SpinnerValueFactory<Integer> nuiteeSpinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min ,max, def );
+        SpinnerValueFactory<Integer> spinnerFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(min ,max, def );
         
         spinner.setEditable(true);
-        spinner.setValueFactory(nuiteeSpinnerFactory);
+        spinner.setValueFactory(spinnerFactory);
 
         return spinner;
     }
 
     private void remplirList(ResultSet res){
         try {
+            // Parcours le ResultSet et ajoute un frais à chaque itération
             while (res.next()){
                 String nomFrais = res.getString("name");
                 Double coutFrais= res.getDouble("cost");
@@ -75,14 +77,17 @@ public class VisiteurEditionFrais {
     }
 
     public VBox createDisplay(){
+        // Se connecte à la BDD et remplis la liste
         ResultSet res = this.conn.getFrais();
         remplirList(res);
 
+        // Récupération de la date :
         Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         int month = cal.get(Calendar.MONTH);
 
+        // Création de l'affichage :
         VBox box = new VBox();
         GridPane grid = new GridPane();
         for (int i = 0; i < 4; i++){
@@ -119,11 +124,11 @@ public class VisiteurEditionFrais {
             rowCount++;
         }
 
+        // TODO: affichage des lignes pour debug, à styliser en CSS. 
         grid.setGridLinesVisible(true);
 
         box.getChildren().addAll(new Label("Frais forfaitisés du mois de " + listeMois[month] + " :"), grid, creerHForfait());
 
-        
         box.setPadding(new Insets(50));
         VBox.setVgrow(box, Priority.ALWAYS);
         box.setAlignment(Pos.TOP_CENTER);
@@ -132,22 +137,28 @@ public class VisiteurEditionFrais {
     }
 
     private VBox creerHForfait(){
-        VBox box = new VBox();
-        Label titreLabel = new Label("Frais hors forfait :");
-        TableView<FraisHForfait> table = new TableView<>();
+
+        // Déclaration des valeurs :
         String[] colName = {"Intitulé","Coût"," "};
         double[] colSize = {0.4,0.4,0.2};
         ObservableList<FraisHForfait> liste = FXCollections.observableArrayList(
             new FraisHForfait("Achat fleur bal",15.89)
         );
 
+        // Création de l'affichage :
+        VBox box = new VBox();
+        Label titreLabel = new Label("Frais hors forfait :");
+        TableView<FraisHForfait> table = new TableView<>();
+
+        // Création des colonnes et de leur propriétés :
         for (int i = 0; i < colName.length; i++){
             TableColumn<FraisHForfait,String> col1 = new TableColumn<>(colName[i]);
+            // Taille en fonction de la taille du TableView et impossibilité de redimensionner
             col1.prefWidthProperty().bind(table.widthProperty().multiply(colSize[i]));
             col1.setResizable(false);
-            
-            col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FraisHForfait,String>,ObservableValue<String>>() {
 
+            // Ajout de la valeur dans la colonne :
+            col1.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<FraisHForfait,String>,ObservableValue<String>>() {
                 @Override
                 public ObservableValue<String> call(CellDataFeatures<FraisHForfait, String> param) {
                     return new ReadOnlyObjectWrapper<String>(param.getValue().getIntitule());
@@ -155,12 +166,15 @@ public class VisiteurEditionFrais {
                 
             });
 
+            // Ajout de la colonne au table view :
             table.getColumns().add(col1);
         }
 
+        // TODO: vérifier pertinence de cette ligne
         Property<ObservableList<FraisHForfait>> listeProperty = new SimpleObjectProperty<>(liste);
         table.itemsProperty().bind(listeProperty);
 
+        // TODO : créer système d'affichage et d'édition des frais hors forfait.
         Button but = new Button("Ajouter");
         but.setOnAction(new EventHandler<ActionEvent>() {
 

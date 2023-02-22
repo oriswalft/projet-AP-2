@@ -26,11 +26,17 @@ public class SVGHolder {
 
     // TODO: Créer des autres méthodes pour spécifier la taille
     private static Region appliquerPropriete(SVGPath svg) {
+
+        // Création de la région qui représente le SVG :
         Region svgShape = new Region();
         svgShape.setShape(svg);
+
+        // Définition de la taille :
         svgShape.setMinSize(50,100);
         svgShape.setPrefSize(100, 150);
         svgShape.setMaxSize(150,200);
+
+        // Changer la couleur :
         svgShape.setStyle("-fx-background-color: white;");
 
         return svgShape;

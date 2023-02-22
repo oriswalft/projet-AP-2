@@ -36,11 +36,13 @@ public class SecondaryController {
     private VBox slidingMenuVBox;
 
     public void changeInfos() {
+        // Changement des labels
         String type_agent_str = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
         String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
         username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
         type_agent.setText(type_agent_str);
 
+        // Chargement des icônes
         readButton.setGraphic(SVGHolder.createCloudGraphics());
         slidingMenuVBox.getChildren().add(SVGHolder.createUserCircle());
     }
@@ -48,12 +50,14 @@ public class SecondaryController {
 
     @FXML
     void deco() throws IOException{
+        // Renvoie toutes les valeur de User à null (bloque l'accès) et renvoie à la page de connexion
         User.deco();
         App.setRoot("primary");
     }
 
     @FXML
     void goToEdit(ActionEvent event) {
+        // Créé la VBox qui sert à afficher l'onglet désiré et l'affiche.
         VisiteurEditionFrais display = new VisiteurEditionFrais();
         VBox box = display.createDisplay();
         screenVBox.getChildren().setAll(box);
@@ -61,6 +65,7 @@ public class SecondaryController {
 
     @FXML 
     void goToRead(ActionEvent event){
+        // Créé la VBox qui sert à afficher l'onglet désiré et l'affiche.
         screenVBox.getChildren().setAll(new VBox());
 
     }
