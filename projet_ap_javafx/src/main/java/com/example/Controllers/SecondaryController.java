@@ -40,6 +40,9 @@ public class SecondaryController {
         String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
         username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
         type_agent.setText(type_agent_str);
+
+        readButton.setGraphic(SVGHolder.createCloudGraphics());
+        slidingMenuVBox.getChildren().add(SVGHolder.createUserCircle());
     }
     
 

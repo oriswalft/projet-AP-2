@@ -69,6 +69,7 @@ public class VisiteurEditionFrais {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+            // Ajout de l'essence car il n'est pas dans la liste des frais forfaitisés
             list.add(new FraisForfaitaires("Kilométres", conn.fuelCost()));
         }
     }
@@ -93,10 +94,22 @@ public class VisiteurEditionFrais {
         int rowCount = 0;
 
         for (FraisForfaitaires i : list){
+            // Création du label dans la première case :
             grid.add(new Label(i.getNom()), 0, rowCount);
-            Spinner<Integer> spin = createIntegerSpinner(0, 0, 31);
+
+            // Création du spinner dans la deuxième case :
+            int max;
+            if (i.getNom().equals("Kilométres")){
+                max = 99999;
+            } else {
+                max = 31;
+            }
+
+            Spinner<Integer> spin = createIntegerSpinner(0, 0, max);
             spin.valueProperty().addListener((obs, oldValue, newValue) -> {i.setSpinnerValue(newValue);});
             grid.add(spin, 1, rowCount);
+
+            // Création du Label de la troisième case, avec une valeur qui se met à jour automatiquement :
             grid.add(new Label(Double.toString(i.getMontantU())), 2, rowCount);
 
             Label totLabel = new Label();
