@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -18,16 +19,17 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("primary"),1080,600);
         String css = this.getClass().getResource("Stylesheet.css").toExternalForm();
+        stage.initStyle(StageStyle.UNDECORATED);
         scene.getStylesheets().add(css);
         stage.setScene(scene);
         stage.setTitle("Projet AP");
-        stage.setMaximized(true);
+        stage.setResizable(true);
+        //stage.setMaximized(true);
 
         stage.setOnCloseRequest(evt -> {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.setTitle("Fermeture de session");
             alert.setHeaderText("Souhaitez vous vraiment quitter ?");
             alert.showAndWait().filter(r -> r != ButtonType.OK).ifPresent(r->evt.consume());
         });

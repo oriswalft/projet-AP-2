@@ -6,29 +6,31 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<VBox alignment="CENTER" prefHeight="825.0" prefWidth="1083.0" style="-fx-background-color: radial-gradient(focus-distance 0% , center 50% 50% , radius 75% , #f2f2f2, #a3a3a3);;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.PrimaryController">
+<AnchorPane prefHeight="600.0" prefWidth="1080.0" style="-fx-background-color: #ccc;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.PrimaryController">
    <children>
-      <VBox alignment="TOP_CENTER" maxHeight="699.0" maxWidth="642.0" minHeight="400.0" minWidth="0.0" prefHeight="562.0" prefWidth="355.0" style="-fx-background-color: #c2e0f2; -fx-border-style: solid; -fx-border-width: 0px; -fx-border-radius: 10%; -fx-background-radius: 20;">
+      <VBox alignment="TOP_CENTER" layoutX="362.0" layoutY="19.0" maxHeight="699.0" maxWidth="642.0" minHeight="400.0" minWidth="0.0" prefHeight="562.0" prefWidth="355.0" style="-fx-background-color: #c2e0f2; -fx-border-style: solid; -fx-border-width: 0px; -fx-border-radius: 10%; -fx-background-radius: 20;">
          <children>
             <Label prefHeight="55.0" prefWidth="28.0" />
-            <Label alignment="TOP_CENTER" prefHeight="53.0" prefWidth="346.0" style="-fx-font-weight: bold;" text="Portail de connexion au service de gestion des fiches de frais" textAlignment="CENTER" wrapText="true">
+            <Label alignment="TOP_CENTER" prefHeight="114.0" prefWidth="275.0" style="-fx-font-weight: bold;" text="Portail de connexion au service de gestion des fiches de frais" textAlignment="CENTER" wrapText="true">
                <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
                <font>
-                  <Font name="Arial" size="22.0" />
+                  <Font name="Arial" size="18.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="238.0">
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="315.0">
                <children>
                   <TextField fx:id="username" prefHeight="25.0" prefWidth="298.0" promptText="Identifiant" style="-fx-background-radius: 20;">
                      <HBox.margin>
-                        <Insets bottom="10.0" top="50.0" />
+                        <Insets bottom="10.0" />
                      </HBox.margin>
                      <font>
                         <Font size="18.0" />
@@ -91,6 +93,14 @@
                </color>
             </DropShadow>
          </effect>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
       </VBox>
+      <Button fx:id="closeBtn" layoutX="1053.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeApp" style="-fx-background-color: transparent;">
+         <graphic>
+            <FontIcon iconLiteral="fa-close" />
+         </graphic>
+      </Button>
    </children>
-</VBox>
+</AnchorPane>

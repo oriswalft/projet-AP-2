@@ -32,12 +32,20 @@ public class PrimaryController {
     @FXML
     private Label connexionLabel;
 
+    @FXML
+    private Button closeBtn;
+
     // Connexion à la base de donnée 
     private final Identification id = new Identification();
 
     @FXML
     void ss(ActionEvent action) throws IOException{
         login();
+    }
+
+    @FXML
+    void closeApp (ActionEvent action){
+        System.exit(0);
     }
 
     @FXML   // Récupère les entrées clavier dans le champ de mot de passe et tente de se connecter si "entrée"

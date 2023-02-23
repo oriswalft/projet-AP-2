@@ -42,9 +42,6 @@ public class SecondaryController {
         username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
         type_agent.setText(type_agent_str);
 
-        // Chargement des icônes
-        readButton.setGraphic(SVGHolder.createCloudGraphics());
-        slidingMenuVBox.getChildren().add(SVGHolder.createUserCircle());
     }
     
 
