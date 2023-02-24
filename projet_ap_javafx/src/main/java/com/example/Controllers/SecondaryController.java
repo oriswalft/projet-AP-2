@@ -66,4 +66,9 @@ public class SecondaryController {
         screenVBox.getChildren().setAll(new VBox());
 
     }
+
+    @FXML
+    void closeApp (ActionEvent action){
+        System.exit(0);
+    }
 }

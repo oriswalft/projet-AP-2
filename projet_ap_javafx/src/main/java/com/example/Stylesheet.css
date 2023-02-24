@@ -7,7 +7,26 @@
     -fx-text-fill : black;
 }
 
+.userInfoBtn:hover .icon {
+    -fx-fill : black;
+}
+
 .selectedBtn {
     -fx-background-color : #B9D5E7;
     -fx-text-fill : black;
+}
+
+.closeBtn:hover {
+    -fx-fill : red;
+    -fx-effect: dropshadow(gaussian, red, 12, 0.05, 0.0, 2);
+    
+}
+
+.menu {
+    -fx-effect: dropshadow(gaussian, grey, 12, 0.05, 0.0, 2);
+}
+
+.indicator {
+    -fx-background-color : #B9D5E7;
+    -fx-background-radius : 25;
 }
