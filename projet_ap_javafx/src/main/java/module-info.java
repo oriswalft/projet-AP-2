@@ -7,5 +7,6 @@ module com.example {
     requires org.kordamp.ikonli.javafx;
 
     opens com.example.Controllers to javafx.fxml;
+    opens com.example.Controllers.Visiteur to javafx.fxml;
     exports com.example;
 }

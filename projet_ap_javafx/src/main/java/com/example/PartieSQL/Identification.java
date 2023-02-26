@@ -83,18 +83,24 @@ public class Identification {
         }
     }
 
-    public ResultSet getFrais(){
+    public double getFrais(String frais){
         try {
             Statement req = conn.createStatement();
-            ResultSet res = req.executeQuery("SELECT name, cost from frais_forfaitises");
+            ResultSet res = req.executeQuery("SELECT name, cost from frais_forfaitises WHERE name = \"" + frais + "\";");
+            double cout = 0;
+            if (res.next()){
+                cout = res.getDouble("cost");
+            }
 
-            return res;
+            return cout;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         
-        return null;
+        return 0.0;
     }
+
+
 
     public double fuelCost(){
         try {
