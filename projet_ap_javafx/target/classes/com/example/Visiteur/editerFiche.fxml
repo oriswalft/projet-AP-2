@@ -79,12 +79,12 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="314.0" text="Intitulé">
+                  <Label fx:id="intituleLabel" alignment="CENTER" prefHeight="18.0" prefWidth="314.0" text="Intitulé">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="215.0" text="Coût" GridPane.columnIndex="1">
+                  <Label fx:id="coutLabel" alignment="CENTER" prefHeight="18.0" prefWidth="215.0" text="Coût" GridPane.columnIndex="1">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

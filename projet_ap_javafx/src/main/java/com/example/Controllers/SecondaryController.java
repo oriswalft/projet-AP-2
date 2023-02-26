@@ -12,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -43,6 +44,9 @@ public class SecondaryController {
 
     @FXML
     private Pane secPane;
+    
+    @FXML
+    private HBox screen;
 
     public void changeInfos() throws IOException {
         // Changement des labels
@@ -51,6 +55,13 @@ public class SecondaryController {
         username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
         type_agent.setText(type_agent_str);
 
+        // Permet de déplacer la fenêtre, impossible sinon
+        screen.setOnMousePressed(pressEvent -> {
+            screen.setOnMouseDragged(dragEvent -> {
+                screen.getScene().getWindow().setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                screen.getScene().getWindow().setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+            });
+        });
 
         secPane.getChildren().add(Navigation.getFXML("Visiteur/accueil.fxml"));
     }

@@ -1,8 +1,11 @@
 package com.example.Controllers.Visiteur;
 
 import com.example.FraisForfaitaires;
+import com.example.FraisHForfait;
 import com.example.PartieSQL.Identification;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,12 +18,18 @@ import javafx.scene.layout.GridPane;
 public class editerFiche {
 
     private final Identification id = new Identification();
+    private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
 
     @FXML
     private GridPane HFGridPane;
-
     @FXML
     private Button ajoutButton;
+
+    @FXML
+    private Label coutLabel;
+
+    @FXML
+    private Label intituleLabel;
 
     @FXML
     private Label kmLabel;
@@ -42,16 +51,14 @@ public class editerFiche {
 
     @FXML
     void showNewDialog(ActionEvent event) {
-        int nombreLigne = HFGridPane.getRowCount();
-        System.out.println(nombreLigne);
-        TextField intituleTextFiled = new TextField();
-        TextField coutTextField = new TextField();
+        // Création d'un nouvel objet de frais :
+        FraisHForfait frais = new FraisHForfait(null, 0);
 
-        intituleTextFiled.setPromptText("Intitulé");
-        coutTextField.setPromptText("Coût");
+        // Création de la ligne :
+        createHFRow(frais);
 
-        HFGridPane.add(new TextField("Intitulé"), 0, nombreLigne);
-        HFGridPane.add(new TextField("Coût"), 1, nombreLigne);
+        // Ajout du nouveau frais créé à la ligne observable.
+        hfListe.add(frais);
     }
 
     public void load(){
@@ -76,4 +83,44 @@ public class editerFiche {
         spin.valueProperty().addListener((obs, oldValue, newValue) -> {frais.setSpinnerValue(newValue);});
         spin.setEditable(true);
     }  
+
+    private void updateHFGrid(){
+        HFGridPane.getChildren().clear();
+        HFGridPane.addRow(0, intituleLabel, coutLabel, ajoutButton);
+        hfListe.forEach(e -> {
+            createHFRow(e);
+        });
+    }
+
+    private Button createDeleteButton(FraisHForfait frais){
+        Button button = new Button("Remove");
+        button.setOnAction(e -> {
+            hfListe.remove(frais);
+            updateHFGrid();
+        });
+
+        return button;
+    }
+
+    private void createHFRow(FraisHForfait frais){
+        // Récupération du nombre de ligne pour permettre d'ajouter à la fin :
+        int nombreLigne = HFGridPane.getRowCount();
+
+        // Création des zones de textes et récupération automatique du texte :
+        TextField intituleTextFiled = new TextField();
+        intituleTextFiled.setOnKeyReleased( e -> frais.setIntitule(intituleTextFiled.getText()));
+        intituleTextFiled.setText(frais.getIntitule());
+        intituleTextFiled.setPromptText("Intitulé");
+
+        TextField coutTextField = new TextField();
+        coutTextField.setOnKeyReleased(e -> frais.setCout(coutTextField.getText()));
+        coutTextField.setText(Double.toString(frais.getCout()));
+        coutTextField.setPromptText("Coût");
+
+        // Création du bouton pour supprimer la ligne et mettre à jour l'affichage :
+        Button removeBtn = createDeleteButton(frais);
+
+        // Ajout des éléments à la grille. 
+        HFGridPane.addRow(nombreLigne, intituleTextFiled,coutTextField,removeBtn);
+    }
 }

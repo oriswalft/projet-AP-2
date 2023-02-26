@@ -21,10 +21,11 @@ public class FraisHForfait {
         return cout;
     }
 
-    public void setCout(double cout) {
-        this.cout = cout;
+    public void setCout(String cout) {
+        try {
+            this.cout = Double.parseDouble(cout);
+        } catch (Exception e ){
+            // Empty
+        }
     }
-
-    
-    
 }
