@@ -1,5 +1,7 @@
 package com.example.Controllers.Visiteur;
 
+import org.kordamp.ikonli.javafx.FontIcon;
+
 import com.example.FraisForfaitaires;
 import com.example.FraisHForfait;
 import com.example.PartieSQL.Identification;
@@ -14,6 +16,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 
 public class editerFiche {
 
@@ -85,15 +88,24 @@ public class editerFiche {
     }  
 
     private void updateHFGrid(){
+        // Remise à zéro :
         HFGridPane.getChildren().clear();
+
+        // Rajout de la première ligne:
         HFGridPane.addRow(0, intituleLabel, coutLabel, ajoutButton);
+
+        // Ajout des lignes qui n'ont pas été supprimées :
         hfListe.forEach(e -> {
             createHFRow(e);
         });
     }
 
     private Button createDeleteButton(FraisHForfait frais){
-        Button button = new Button("Remove");
+        Button button = new Button();
+        FontIcon icon = new FontIcon("fa-trash");
+        icon.setIconColor(Color.RED);
+        button.setGraphic(icon);
+        button.setStyle("-fx-background-color: transparent;");
         button.setOnAction(e -> {
             hfListe.remove(frais);
             updateHFGrid();

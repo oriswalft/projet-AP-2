@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="818.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.Visiteur.editerFiche">
    <children>
@@ -89,7 +90,10 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="ajoutButton" alignment="CENTER" mnemonicParsing="false" onAction="#showNewDialog" prefHeight="26.0" prefWidth="45.0" text="Ajout" GridPane.columnIndex="2" />
+                  <Button fx:id="ajoutButton" alignment="CENTER" mnemonicParsing="false" onAction="#showNewDialog" prefHeight="26.0" prefWidth="45.0" style="-fx-background-color: transparent;" textFill="#19c441" GridPane.columnIndex="2">
+                     <graphic>
+                        <FontIcon iconColor="#64cf6b" iconLiteral="fa-plus" />
+                     </graphic></Button>
                </children>
             </GridPane>
          </content>
