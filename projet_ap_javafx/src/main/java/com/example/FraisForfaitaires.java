@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.PartieSQL.Identification;
+
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -10,8 +12,11 @@ public class FraisForfaitaires {
     private SimpleDoubleProperty total;
 
     public FraisForfaitaires(String nom, Double montantU) {
+        Identification id = new Identification();
+
+
         this.nom = nom;
-        this.qte = new SimpleIntegerProperty(0);
+        this.qte = new SimpleIntegerProperty(id.getQty(nom));
         this.montantU = montantU;
         this.total = new SimpleDoubleProperty(0);
         this.total.bind(qte.multiply(getMontantU()));

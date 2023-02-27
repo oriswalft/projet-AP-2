@@ -87,11 +87,11 @@ public class editerFiche {
         titleLabel.setText("Edition de la fiche du mois de " + mois +":");
 
         // Création de l'objet du frais
-        FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitées", id.getFrais("nuitee"));
+        FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitee", id.getFrais("nuitee"));
         fdf.getFraisForfaitaires().add(nuiteeFrais);
-        FraisForfaitaires midiFrais = new FraisForfaitaires("Repas du midi", id.getFrais("midi"));
+        FraisForfaitaires midiFrais = new FraisForfaitaires("Repas_midi", id.getFrais("midi"));
         fdf.getFraisForfaitaires().add(midiFrais);
-        FraisForfaitaires kilometresFrais = new FraisForfaitaires("Kilomètres", id.fuelCost());
+        FraisForfaitaires kilometresFrais = new FraisForfaitaires("Kilometre", id.fuelCost());
         fdf.getFraisForfaitaires().add(kilometresFrais);
 
 
@@ -108,8 +108,11 @@ public class editerFiche {
     }
 
     private void updateSpinner(Spinner<Integer> spin, FraisForfaitaires frais, int max){
-        spin.setValueFactory( new SpinnerValueFactory.IntegerSpinnerValueFactory(0,max,0));
-        spin.valueProperty().addListener((obs, oldValue, newValue) -> {frais.setSpinnerValue(newValue);});
+        spin.setValueFactory( new SpinnerValueFactory.IntegerSpinnerValueFactory(0,max,frais.getQte().intValue()));
+        spin.valueProperty().addListener((obs, oldValue, newValue) -> {
+            frais.setSpinnerValue(newValue);
+            id.setQty(frais.getNom(), newValue);
+        });
         spin.setEditable(true);
     }  
 

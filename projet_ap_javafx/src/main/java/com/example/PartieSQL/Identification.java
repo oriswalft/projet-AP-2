@@ -116,4 +116,28 @@ public class Identification {
         }
         return 0.0;
     }
+
+    public int getQty(String name){
+        try {
+            Statement req = conn.createStatement();
+            ResultSet res = req.executeQuery("SELECT "+ name + " FROM fiches_de_frais WHERE fk_utilisateurs = \"" + User.getMATRICULE() + "\";");
+            
+            if (res.next()){
+                return res.getInt(name);
+            }
+
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public void setQty(String name, int qty){
+        try {
+            Statement req = conn.createStatement();
+            req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = "+ qty + " WHERE fk_utilisateurs = \"" + User.getMATRICULE() + "\" ;" );
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
 }

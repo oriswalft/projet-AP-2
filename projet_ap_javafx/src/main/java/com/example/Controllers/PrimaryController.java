@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 public class PrimaryController {
@@ -34,6 +35,12 @@ public class PrimaryController {
 
     @FXML
     private Button closeBtn;
+
+    @FXML
+    private HBox usernameHBox;
+
+    @FXML
+    private HBox passwordHBox;
 
     // Connexion à la base de donnée 
     private final Identification id = new Identification();
@@ -83,10 +90,10 @@ public class PrimaryController {
             connexionLabel.setText("L'authentification a échoué!");
             connexionLabel.setVisible(true);
 
-            shake(username);
-            shake(password);
+            shake(usernameHBox);
+            shake(passwordHBox);
             
-            password.setStyle("-fx-border-color : #ff0000; -fx-border-radius : 50; -fx-background-radius:50;");
+            passwordHBox.setStyle("-fx-border-color : #ff0000; -fx-border-radius : 50; -fx-background-radius:50; -fx-background-color: white;");
         }
     }
 
