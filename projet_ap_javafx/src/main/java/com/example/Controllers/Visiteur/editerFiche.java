@@ -1,5 +1,8 @@
 package com.example.Controllers.Visiteur;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import com.example.FraisForfaitaires;
@@ -19,12 +22,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class editerFiche {
-
     private final Identification id = new Identification();
     private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
 
     @FXML
+    private Label titleLabel;
+
+    @FXML
     private GridPane HFGridPane;
+
     @FXML
     private Button ajoutButton;
 
@@ -65,6 +71,17 @@ public class editerFiche {
     }
 
     public void load(){
+        // Mise à jour du label en fonction du mois séléctionné :
+        String[] moisList = {"janvier","février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","décembre"};
+
+        java.util.Date date= new Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH);
+        String mois = moisList[month];
+
+        titleLabel.setText("Edition de la fiche du mois de " + mois +":");
+
         // Création de l'objet du frais
         FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitées", id.getFrais("nuitee"));
         FraisForfaitaires midiFrais = new FraisForfaitaires("Repas du midi", id.getFrais("midi"));

@@ -13,7 +13,7 @@
 
 <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="818.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.Visiteur.editerFiche">
    <children>
-      <Label alignment="CENTER" prefHeight="51.0" prefWidth="1152.0" text="Edition de la fiche du mois de %mois% :">
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="51.0" prefWidth="1152.0" text="Edition de la fiche du mois de %mois% :">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>

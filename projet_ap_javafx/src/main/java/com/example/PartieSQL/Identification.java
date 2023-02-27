@@ -11,7 +11,7 @@ import com.example.User;
 
 public class Identification {
 
-    private final String dbURL = "jdbc:mysql://127.0.0.1:3306/projetap";
+    private final String dbURL = "jdbc:mysql://192.168.106.20:3306/projet ap2";
     private final String dbMDP = "";
 
     private Connection conn;
