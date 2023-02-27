@@ -127,11 +127,14 @@ public class editerFiche {
     }
 
     private Button createDeleteButton(FraisHForfait frais){
+        // Création du bouton :
         Button button = new Button();
+        // Ajout de l'icone en rouge et fond transparent :
         FontIcon icon = new FontIcon("fa-trash");
         icon.setIconColor(Color.RED);
         button.setGraphic(icon);
         button.setStyle("-fx-background-color: transparent;");
+        // Ajout de la fonction pour supprimer le bouton lors du clic :
         button.setOnAction(e -> {
             hfListe.remove(frais);
             updateHFGrid();

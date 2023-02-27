@@ -9,7 +9,7 @@ public class FicheDeFrais {
 
     // TODO: connecter à la base de donnée
     public FicheDeFrais(){
-
+        
     }
 
     public ArrayList<FraisForfaitaires> getFraisForfaitaires() {
