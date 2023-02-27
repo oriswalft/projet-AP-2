@@ -5,6 +5,7 @@ import java.util.Date;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import com.example.FicheDeFrais;
 import com.example.FraisForfaitaires;
 import com.example.FraisHForfait;
 import com.example.PartieSQL.Identification;
@@ -24,6 +25,8 @@ import javafx.scene.paint.Color;
 public class editerFiche {
     private final Identification id = new Identification();
     private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
+    // Création de la fiche de frais :
+    private FicheDeFrais fdf = new FicheDeFrais();
 
     @FXML
     private Label titleLabel;
@@ -62,6 +65,7 @@ public class editerFiche {
     void showNewDialog(ActionEvent event) {
         // Création d'un nouvel objet de frais :
         FraisHForfait frais = new FraisHForfait(null, 0);
+        fdf.getFraisHForfaits().add(frais);
 
         // Création de la ligne :
         createHFRow(frais);
@@ -84,8 +88,13 @@ public class editerFiche {
 
         // Création de l'objet du frais
         FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitées", id.getFrais("nuitee"));
+        fdf.getFraisForfaitaires().add(nuiteeFrais);
         FraisForfaitaires midiFrais = new FraisForfaitaires("Repas du midi", id.getFrais("midi"));
+        fdf.getFraisForfaitaires().add(midiFrais);
         FraisForfaitaires kilometresFrais = new FraisForfaitaires("Kilomètres", id.fuelCost());
+        fdf.getFraisForfaitaires().add(kilometresFrais);
+
+
 
         // Bind des propriétés au label des total
         kmLabel.textProperty().bind(kilometresFrais.getTotal().asString());
