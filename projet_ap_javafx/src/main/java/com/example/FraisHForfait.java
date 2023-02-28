@@ -1,6 +1,9 @@
 package com.example;
 
+import com.example.PartieSQL.Identification;
+
 public class FraisHForfait {
+    private Identification id = new Identification();
     private String intitule;
     private double cout;
 
@@ -15,6 +18,7 @@ public class FraisHForfait {
 
     public void setIntitule(String intitule) {
         this.intitule = intitule;
+        id.updateHF(intitule, this.cout);
     }
 
     public double getCout() {
@@ -24,6 +28,7 @@ public class FraisHForfait {
     public void setCout(String cout) {
         try {
             this.cout = Double.parseDouble(cout);
+            id.updateHF(intitule, this.cout);
         } catch (Exception e ){
             // Empty
         }

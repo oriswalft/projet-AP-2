@@ -1,5 +1,7 @@
 package com.example.Controllers.Visiteur;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -105,6 +107,16 @@ public class editerFiche {
         updateSpinner(kmSpinner, kilometresFrais,9999);
         updateSpinner(nuiteeSpinner, nuiteeFrais,31);
         updateSpinner(midiSpinner, midiFrais,31);
+
+        try {
+            ResultSet res = id.fetchHF();
+            while (res.next()){
+                createHFRow(new FraisHForfait(res.getString("intitules"), res.getDouble("cout")));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     private void updateSpinner(Spinner<Integer> spin, FraisForfaitaires frais, int max){
@@ -140,6 +152,7 @@ public class editerFiche {
         // Ajout de la fonction pour supprimer le bouton lors du clic :
         button.setOnAction(e -> {
             hfListe.remove(frais);
+            id.deleteHF(frais.getIntitule(), frais.getCout());
             updateHFGrid();
         });
 
@@ -160,6 +173,8 @@ public class editerFiche {
         coutTextField.setOnKeyReleased(e -> frais.setCout(coutTextField.getText()));
         coutTextField.setText(Double.toString(frais.getCout()));
         coutTextField.setPromptText("Coût");
+
+        // TODO: Ajouter date 
 
         // Création du bouton pour supprimer la ligne et mettre à jour l'affichage :
         Button removeBtn = createDeleteButton(frais);

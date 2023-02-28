@@ -105,7 +105,7 @@ public class Identification {
     public double fuelCost(){
         try {
             Statement req = conn.createStatement();
-            ResultSet res = req.executeQuery("SELECT Cout FROM type_vehicule WHERE id_type_vehicule = " + User.getTYPE_AGENT() + ";");
+            ResultSet res = req.executeQuery("SELECT Cout FROM type_vehicule WHERE id_type_vehicule = " + User.getTYPE_VEHICULE() + ";");
             
             while (res.next()){
                 return res.getDouble("Cout");
@@ -136,6 +136,44 @@ public class Identification {
         try {
             Statement req = conn.createStatement();
             req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = "+ qty + " WHERE fk_utilisateurs = \"" + User.getMATRICULE() + "\" ;" );
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+    public ResultSet fetchHF() throws SQLException{
+
+        Statement req = conn.createStatement();
+        ResultSet res =req.executeQuery("SELECT * from frais_hors_forfaits WHERE fk_fraisHF=\"" + User.getMATRICULE()+"\";" );
+
+
+        return res;
+
+    }
+
+
+    public void addHF(String intitule, double cout){
+        try {
+            Statement req = conn.createStatement();
+            req.execute("INSERT INTO frais_hors_forfaits VALUES \"" + User.getMATRICULE() +"\", " + intitule + ", " + cout + ", null;" );
+        } catch (SQLException e){
+
+        }
+    }
+
+    public void updateHF(String intitule, double cout){
+        try {
+            Statement req = conn.createStatement();
+            req.executeUpdate("UPDATE frais_hors_forfaits SET intitules = \""+ intitule + "\", cout = " + cout + " WHERE fk_fraisHF = \"" + User.getMATRICULE() + "\" AND intitules = \"" + intitule +"\";" );
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteHF(String intitule, double cout){
+        try {
+            Statement req = conn.createStatement();
+            req.executeUpdate("DELETE FROM frais_hors_forfaits WHERE intitules = \"" + intitule + "\" AND cout = " + cout + " AND fk_fraisHF = \"" + User.getMATRICULE() + "\";" );
         } catch (SQLException e ){
             e.printStackTrace();
         }
