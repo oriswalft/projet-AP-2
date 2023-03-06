@@ -69,6 +69,15 @@ public class editerFiche {
     @FXML
     private Label dateLabel;
 
+    @FXML 
+    private Label nuiteeCoutLabel;
+    @FXML
+    private Label midiCoutLabel;
+
+    @FXML
+    private Label kmCoutLabel;
+
+
     @FXML
     void showNewDialog(ActionEvent event) {
         // Création d'un nouvel objet de frais :
@@ -107,8 +116,11 @@ public class editerFiche {
 
         // Bind des propriétés au label des total
         kmLabel.textProperty().bind(kilometresFrais.getTotal().asString());
+        kmCoutLabel.setText(Double.toString(kilometresFrais.getMontantU()));
         midiLabel.textProperty().bind(midiFrais.getTotal().asString());
+        midiCoutLabel.setText(Double.toString(midiFrais.getMontantU()));
         nuiteeLabel.textProperty().bind(nuiteeFrais.getTotal().asString());
+        nuiteeCoutLabel.setText(Double.toString(nuiteeFrais.getMontantU()));
 
         // Ajout des value factory des spinner
         updateSpinner(kmSpinner, kilometresFrais,9999);

@@ -26,6 +26,7 @@
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="353.39996337890625" minWidth="10.0" prefWidth="304.5999755859375" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="296.20001220703125" minWidth="10.0" prefWidth="295.4000244140625" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="296.20001220703125" minWidth="10.0" prefWidth="295.4000244140625" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="296.20001220703125" minWidth="10.0" prefWidth="295.4000244140625" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -35,7 +36,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="609.0" text="Frais forfaitaires" underline="true" wrapText="true" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="609.0" text="Frais forfaitaires" underline="true" wrapText="true" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -50,7 +51,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="18.0" prefWidth="223.0" text="Total" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="223.0" text="Total" GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -58,12 +59,20 @@
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="218.0" text="Nuitées" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="212.0" text="Repas midi" GridPane.rowIndex="3" />
             <Label alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Kilomètres" GridPane.rowIndex="4" />
-            <Label fx:id="nuiteeLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <Label fx:id="midiLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <Label fx:id="kmLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label fx:id="nuiteeLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="midiLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="kmLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <Spinner fx:id="nuiteeSpinner" editable="true" prefHeight="25.0" prefWidth="325.0" stylesheets="@../../../../java/com/example/Stylesheet.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Spinner fx:id="midiSpinner" prefHeight="25.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Spinner fx:id="kmSpinner" prefHeight="25.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Coût" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="nuiteeCoutLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="midiCoutLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="kmCoutLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
          </children>
          <VBox.margin>
             <Insets left="10.0" right="10.0" />
