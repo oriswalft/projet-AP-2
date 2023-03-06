@@ -42,7 +42,7 @@
             </HBox>
             <Button fx:id="homeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="233.0" styleClass="userInfoBtn" text="Acceuil" textFill="WHITE">
                <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fa-home" styleClass="icon" />
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-home" styleClass="icon" text="" />
                </graphic>
                <font>
                   <Font name="System Bold" size="12.0" />
