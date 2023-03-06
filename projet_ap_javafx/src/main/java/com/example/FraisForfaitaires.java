@@ -10,11 +10,9 @@ public class FraisForfaitaires {
     private SimpleIntegerProperty qte;
     private double montantU;
     private SimpleDoubleProperty total;
+    private final Identification id = new Identification();
 
     public FraisForfaitaires(String nom, Double montantU) {
-        Identification id = new Identification();
-
-
         this.nom = nom;
         this.qte = new SimpleIntegerProperty(id.getQty(nom));
         this.montantU = montantU;
@@ -40,5 +38,7 @@ public class FraisForfaitaires {
 
     public void setSpinnerValue(Integer newValue) {
         this.qte.set(newValue);
+        id.setQty(nom, newValue);
+
     }    
 }

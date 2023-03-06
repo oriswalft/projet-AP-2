@@ -2,6 +2,8 @@ package com.example.Controllers.Visiteur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -17,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
@@ -62,6 +65,9 @@ public class editerFiche {
 
     @FXML
     private Spinner<Integer> nuiteeSpinner;
+
+    @FXML
+    private Label dateLabel;
 
     @FXML
     void showNewDialog(ActionEvent event) {
@@ -113,13 +119,17 @@ public class editerFiche {
             ResultSet res = id.fetchHF();
             while (res.next()){
 
-                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"));
+                Date dateBDD = res.getDate("Date");
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                if (dateBDD != null) {
+                    localDate = dateBDD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                }
+                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"), localDate);
 
                 createHFRow(frais);
                 hfListe.add(frais);
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -128,8 +138,6 @@ public class editerFiche {
         spin.setValueFactory( new SpinnerValueFactory.IntegerSpinnerValueFactory(0,max,frais.getQte().intValue()));
         spin.valueProperty().addListener((obs, oldValue, newValue) -> {
             frais.setSpinnerValue(newValue);
-            // TODO : Mettre dans setSpinner value
-            id.setQty(frais.getNom(), newValue);
         });
         spin.setEditable(true);
     }  
@@ -139,7 +147,7 @@ public class editerFiche {
         HFGridPane.getChildren().clear();
 
         // Rajout de la première ligne:
-        HFGridPane.addRow(0, intituleLabel, coutLabel, ajoutButton);
+        HFGridPane.addRow(0, intituleLabel, coutLabel,dateLabel, ajoutButton);
 
         // Ajout des lignes qui n'ont pas été supprimées :
         hfListe.forEach(e -> {
@@ -180,12 +188,15 @@ public class editerFiche {
         coutTextField.setText(Double.toString(frais.getCout()));
         coutTextField.setPromptText("Coût");
 
-        // TODO: Ajouter date 
+        // La date
+        DatePicker datePicker = new DatePicker();
+        datePicker.setOnAction(e -> frais.setDate(datePicker.getValue()));
+
 
         // Création du bouton pour supprimer la ligne et mettre à jour l'affichage :
         Button removeBtn = createDeleteButton(frais);
 
         // Ajout des éléments à la grille. 
-        HFGridPane.addRow(nombreLigne, intituleTextFiled,coutTextField,removeBtn);
+        HFGridPane.addRow(nombreLigne, intituleTextFiled,coutTextField,datePicker,removeBtn);
     }
 }

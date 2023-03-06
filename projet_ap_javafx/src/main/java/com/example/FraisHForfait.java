@@ -1,11 +1,15 @@
 package com.example;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import com.example.PartieSQL.Identification;
 
 public class FraisHForfait {
     private Identification id = new Identification();
     private String intitule;
     private double cout;
+    private LocalDate date;
     private int key;
 
     // Pour la création de nouveaux frais :
@@ -14,12 +18,10 @@ public class FraisHForfait {
         this.cout = cout;
 
         this.key = id.addHF(intitule, cout);
-
-        System.out.println(this.key);
     }
 
     // Pour retrouver les frais déjà existants :
-    public FraisHForfait(String intitule, double cout, int key){
+    public FraisHForfait(String intitule, double cout, int key, LocalDate date){
         this.intitule = intitule;
         this.cout = cout;
         this.key = key;
@@ -59,6 +61,19 @@ public class FraisHForfait {
         id.deleteHF(this.key);
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
 
+
+    // TODO : Réparer la date
+    public void setDate(LocalDate date) {
+        this.date = date;
+
+        LocalDate localDate = LocalDate.now(); // Récupérer la date actuelle
+        Date dateMySQL = Date.from(localDate.atStartOfDay().toInstant(null));
+
+        id.setHFDate(dateMySQL);
+    }
     
 }

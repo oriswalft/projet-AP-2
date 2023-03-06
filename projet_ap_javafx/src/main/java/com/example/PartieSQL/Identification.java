@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import com.example.User;
 
@@ -190,6 +191,16 @@ public class Identification {
         try {
             Statement req = conn.createStatement();
             req.executeUpdate("DELETE FROM frais_hors_forfaits WHERE id_fk_fraisHF = \" " + key + "\" ;" );
+        } catch (SQLException e ){
+            e.printStackTrace();
+        }
+    }
+
+    // TODO: Réparer la date 
+    public void setHFDate(Date date){
+        try {
+            Statement req = conn.createStatement();
+            req.executeUpdate("UPDATE frais_hors_forfaits SET Date = \" " +  date +"\";" );
         } catch (SQLException e ){
             e.printStackTrace();
         }
