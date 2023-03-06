@@ -3,6 +3,7 @@ package com.example.PartieSQL;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -11,7 +12,7 @@ import com.example.User;
 
 public class Identification {
 
-    private final String dbURL = "jdbc:mysql://192.168.106.20:3306/projet ap2";
+    private final String dbURL = "jdbc:mysql://172.16.107.16:3306/projet ap2";
     private final String dbMDP = "";
 
     private Connection conn;
@@ -152,28 +153,43 @@ public class Identification {
     }
 
 
-    public void addHF(String intitule, double cout){
+    public int addHF(String intitule, double cout){
         try {
-            Statement req = conn.createStatement();
-            req.execute("INSERT INTO frais_hors_forfaits VALUES \"" + User.getMATRICULE() +"\", " + intitule + ", " + cout + ", null;" );
-        } catch (SQLException e){
+            String SQL = "INSERT INTO frais_hors_forfaits (id_fk_fraisHF, fk_fraisHF, intitules, cout) VALUES (?,?,?,?)";
+            PreparedStatement statement = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
+            statement.setNull(1, 0);
+            statement.setString(2, User.getMATRICULE());
+            statement.setString(3, intitule);
+            statement.setDouble(4, cout);
+
+            statement.addBatch();
+            statement.executeBatch();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) return rs.getInt(1);
+            else return -1;
+
+        } catch (SQLException e){
+            e.printStackTrace();
         }
+
+        return -1;
     }
 
-    public void updateHF(String intitule, double cout){
+    public void updateHF(String intitule, double cout, int key){
         try {
             Statement req = conn.createStatement();
-            req.executeUpdate("UPDATE frais_hors_forfaits SET intitules = \""+ intitule + "\", cout = " + cout + " WHERE fk_fraisHF = \"" + User.getMATRICULE() + "\" AND intitules = \"" + intitule +"\";" );
+            req.executeUpdate("UPDATE frais_hors_forfaits SET intitules = \""+ intitule + "\", cout = " + cout + " WHERE id_fk_fraisHF = \"" + key + "\";" );
         } catch (SQLException e ){
             e.printStackTrace();
         }
     }
 
-    public void deleteHF(String intitule, double cout){
+    public void deleteHF(int key){
         try {
             Statement req = conn.createStatement();
-            req.executeUpdate("DELETE FROM frais_hors_forfaits WHERE intitules = \"" + intitule + "\" AND cout = " + cout + " AND fk_fraisHF = \"" + User.getMATRICULE() + "\";" );
+            req.executeUpdate("DELETE FROM frais_hors_forfaits WHERE id_fk_fraisHF = \" " + key + "\" ;" );
         } catch (SQLException e ){
             e.printStackTrace();
         }
