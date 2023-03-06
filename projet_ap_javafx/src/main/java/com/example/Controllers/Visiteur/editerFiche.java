@@ -66,7 +66,7 @@ public class editerFiche {
     @FXML
     void showNewDialog(ActionEvent event) {
         // Création d'un nouvel objet de frais :
-        FraisHForfait frais = new FraisHForfait(null, 0);
+        FraisHForfait frais = new FraisHForfait("", 0);
         fdf.getFraisHForfaits().add(frais);
 
         // Création de la ligne :
@@ -74,6 +74,7 @@ public class editerFiche {
 
         // Ajout du nouveau frais créé à la ligne observable.
         hfListe.add(frais);
+
     }
 
     public void load(){
@@ -111,7 +112,11 @@ public class editerFiche {
         try {
             ResultSet res = id.fetchHF();
             while (res.next()){
-                createHFRow(new FraisHForfait(res.getString("intitules"), res.getDouble("cout")));
+
+                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"));
+
+                createHFRow(frais);
+                hfListe.add(frais);
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -123,6 +128,7 @@ public class editerFiche {
         spin.setValueFactory( new SpinnerValueFactory.IntegerSpinnerValueFactory(0,max,frais.getQte().intValue()));
         spin.valueProperty().addListener((obs, oldValue, newValue) -> {
             frais.setSpinnerValue(newValue);
+            // TODO : Mettre dans setSpinner value
             id.setQty(frais.getNom(), newValue);
         });
         spin.setEditable(true);
@@ -152,7 +158,7 @@ public class editerFiche {
         // Ajout de la fonction pour supprimer le bouton lors du clic :
         button.setOnAction(e -> {
             hfListe.remove(frais);
-            id.deleteHF(frais.getIntitule(), frais.getCout());
+            frais.delete();
             updateHFGrid();
         });
 
