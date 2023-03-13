@@ -1,7 +1,6 @@
 package com.example;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 import com.example.PartieSQL.Identification;
 
@@ -24,6 +23,7 @@ public class FraisHForfait {
     public FraisHForfait(String intitule, double cout, int key, LocalDate date){
         this.intitule = intitule;
         this.cout = cout;
+        this.date = date;
         this.key = key;
     }
 
@@ -69,11 +69,7 @@ public class FraisHForfait {
     // TODO : Réparer la date
     public void setDate(LocalDate date) {
         this.date = date;
-
-        LocalDate localDate = LocalDate.now(); // Récupérer la date actuelle
-        Date dateMySQL = Date.from(localDate.atStartOfDay().toInstant(null));
-
-        id.setHFDate(dateMySQL);
+        id.saveDate(date, this.key);
     }
     
 }

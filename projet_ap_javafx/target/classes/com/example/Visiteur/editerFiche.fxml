@@ -142,5 +142,10 @@
             <Insets left="10.0" right="10.0" />
          </VBox.margin>
       </ScrollPane>
+      <Label fx:id="totalFraisLabel" text="Total des frais engagés ce mois-ci :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </VBox>

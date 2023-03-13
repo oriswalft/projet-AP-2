@@ -3,13 +3,11 @@ package com.example.Controllers.Visiteur;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import com.example.FicheDeFrais;
 import com.example.FraisForfaitaires;
 import com.example.FraisHForfait;
 import com.example.PartieSQL.Identification;
@@ -18,23 +16,23 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class editerFiche {
     private final Identification id = new Identification();
     private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
-    // Création de la fiche de frais :
-    private FicheDeFrais fdf = new FicheDeFrais();
 
     @FXML
-    private Label titleLabel;
+    private Label titleLabel, coutLabel, intituleLabel, kmLabel, midiLabel, nuiteeLabel, dateLabel, nuiteeCoutLabel, midiCoutLabel, kmCoutLabel, totalFraisLabel;
 
     @FXML
     private GridPane HFGridPane;
@@ -43,46 +41,12 @@ public class editerFiche {
     private Button ajoutButton;
 
     @FXML
-    private Label coutLabel;
-
-    @FXML
-    private Label intituleLabel;
-
-    @FXML
-    private Label kmLabel;
-
-    @FXML
-    private Spinner<Integer> kmSpinner;
-
-    @FXML
-    private Label midiLabel;
-
-    @FXML
-    private Spinner<Integer> midiSpinner;
-
-    @FXML
-    private Label nuiteeLabel;
-
-    @FXML
-    private Spinner<Integer> nuiteeSpinner;
-
-    @FXML
-    private Label dateLabel;
-
-    @FXML 
-    private Label nuiteeCoutLabel;
-    @FXML
-    private Label midiCoutLabel;
-
-    @FXML
-    private Label kmCoutLabel;
-
+    private Spinner<Integer> kmSpinner, midiSpinner, nuiteeSpinner;
 
     @FXML
     void showNewDialog(ActionEvent event) {
         // Création d'un nouvel objet de frais :
         FraisHForfait frais = new FraisHForfait("", 0);
-        fdf.getFraisHForfaits().add(frais);
 
         // Création de la ligne :
         createHFRow(frais);
@@ -106,11 +70,8 @@ public class editerFiche {
 
         // Création de l'objet du frais
         FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitee", id.getFrais("nuitee"));
-        fdf.getFraisForfaitaires().add(nuiteeFrais);
         FraisForfaitaires midiFrais = new FraisForfaitaires("Repas_midi", id.getFrais("midi"));
-        fdf.getFraisForfaitaires().add(midiFrais);
         FraisForfaitaires kilometresFrais = new FraisForfaitaires("Kilometre", id.fuelCost());
-        fdf.getFraisForfaitaires().add(kilometresFrais);
 
 
 
@@ -131,12 +92,7 @@ public class editerFiche {
             ResultSet res = id.fetchHF();
             while (res.next()){
 
-                Date dateBDD = res.getDate("Date");
-                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                if (dateBDD != null) {
-                    localDate = dateBDD.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                }
-                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"), localDate);
+                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"), id.getDate(res.getInt("id_fk_fraisHF")));
 
                 createHFRow(frais);
                 hfListe.add(frais);
@@ -202,7 +158,19 @@ public class editerFiche {
 
         // La date
         DatePicker datePicker = new DatePicker();
-        datePicker.setOnAction(e -> frais.setDate(datePicker.getValue()));
+        datePicker.setValue(frais.getDate());
+        datePicker.setOnAction(e -> {
+            LocalDate date = datePicker.getValue();
+
+            if (date.getMonthValue() != LocalDate.now().getMonthValue() || date.getYear() != LocalDate.now().getYear()){
+                Alert alert = new Alert(AlertType.WARNING);
+                alert.setContentText("La date saisie est différente du mois en cours. Veuillez choisir une date valide et recommencez!");
+                alert.show();
+                e.consume();
+            } else {
+                frais.setDate(datePicker.getValue());
+            }
+        });
 
 
         // Création du bouton pour supprimer la ligne et mettre à jour l'affichage :

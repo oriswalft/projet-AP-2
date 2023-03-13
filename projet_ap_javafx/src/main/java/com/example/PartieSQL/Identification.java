@@ -2,12 +2,13 @@ package com.example.PartieSQL;
 
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.example.User;
 
@@ -202,11 +203,30 @@ public class Identification {
         }
     }
 
-    // TODO: Réparer la date
-    public void setHFDate(Date date) {
+    public LocalDate getDate(int key){
+        @SuppressWarnings("deprecated")
+        Date dateSql = new Date(2020, 9, 9);
         try {
             Statement req = conn.createStatement();
-            req.executeUpdate("UPDATE frais_hors_forfaits SET Date = \" " + date + "\";");
+            ResultSet res = req.executeQuery("SELECT Date FROM frais_hors_forfaits WHERE id_fk_fraisHF = \" " + key + "\";");
+            if(res.next()) {
+                dateSql = res.getDate("Date");
+            }
+            return dateSql.toLocalDate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void saveDate(LocalDate date, int key) {
+        try {
+            String sql = "UPDATE frais_hors_forfaits SET date = (?) WHERE id_fk_fraisHF = \" " + key + "\";";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setDate(1, java.sql.Date.valueOf(date));
+            statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
