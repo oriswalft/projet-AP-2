@@ -2,10 +2,10 @@ package com.example;
 
 import java.time.LocalDate;
 
-import com.example.PartieSQL.Identification;
+import com.example.PartieSQL.CoBdd;
 
 public class FraisHForfait {
-    private Identification id = new Identification();
+    private CoBdd id = new CoBdd();
     private String intitule;
     private double cout;
     private LocalDate date;

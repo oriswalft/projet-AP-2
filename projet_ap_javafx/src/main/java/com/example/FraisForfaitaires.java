@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.PartieSQL.Identification;
+import com.example.PartieSQL.CoBdd;
 
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -10,7 +10,7 @@ public class FraisForfaitaires {
     private SimpleIntegerProperty qte;
     private double montantU;
     private SimpleDoubleProperty total;
-    private final Identification id = new Identification();
+    private final CoBdd id = new CoBdd();
 
     public FraisForfaitaires(String nom, Double montantU) {
         this.nom = nom;

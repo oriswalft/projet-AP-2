@@ -10,7 +10,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 import com.example.FraisForfaitaires;
 import com.example.FraisHForfait;
-import com.example.PartieSQL.Identification;
+import com.example.PartieSQL.CoBdd;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 public class editerFiche {
-    private final Identification id = new Identification();
+    private final CoBdd id = new CoBdd();
     private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
     private ObservableList<FraisForfaitaires> ffListe = FXCollections.observableArrayList();
 

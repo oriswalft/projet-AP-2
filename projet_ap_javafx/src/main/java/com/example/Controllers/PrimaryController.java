@@ -3,7 +3,7 @@ package com.example.Controllers;
 import java.io.IOException;
 
 import com.example.App;
-import com.example.PartieSQL.Identification;
+import com.example.PartieSQL.CoBdd;
 
 import javafx.scene.control.Label;
 import javafx.animation.TranslateTransition;
@@ -43,7 +43,7 @@ public class PrimaryController {
     private HBox passwordHBox;
 
     // Connexion à la base de donnée 
-    private final Identification id = new Identification();
+    private final CoBdd id = new CoBdd();
 
     @FXML
     void ss(ActionEvent action) throws IOException{
