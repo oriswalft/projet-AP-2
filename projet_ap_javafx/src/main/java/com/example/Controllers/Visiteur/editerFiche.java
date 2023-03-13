@@ -30,6 +30,7 @@ import javafx.scene.paint.Color;
 public class editerFiche {
     private final Identification id = new Identification();
     private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
+    private ObservableList<FraisForfaitaires> ffListe = FXCollections.observableArrayList();
 
     @FXML
     private Label titleLabel, coutLabel, intituleLabel, kmLabel, midiLabel, nuiteeLabel, dateLabel, nuiteeCoutLabel, midiCoutLabel, kmCoutLabel, totalFraisLabel;
@@ -53,7 +54,6 @@ public class editerFiche {
 
         // Ajout du nouveau frais créé à la ligne observable.
         hfListe.add(frais);
-
     }
 
     public void load(){
@@ -72,6 +72,7 @@ public class editerFiche {
         FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitee", id.getFrais("nuitee"));
         FraisForfaitaires midiFrais = new FraisForfaitaires("Repas_midi", id.getFrais("midi"));
         FraisForfaitaires kilometresFrais = new FraisForfaitaires("Kilometre", id.fuelCost());
+        ffListe.addAll(nuiteeFrais, midiFrais, kilometresFrais);
 
 
 
@@ -100,6 +101,16 @@ public class editerFiche {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        double totalFrais = 0;
+        for (FraisHForfait f : hfListe){
+            totalFrais += f.getCout();
+        }
+
+        for (FraisForfaitaires f : ffListe){
+            totalFrais+= f.getTotal().get();
+        }
+        totalFraisLabel.setText("Total des frais engagés ce mois-ci : " + totalFrais + "€.");
     }
 
     private void updateSpinner(Spinner<Integer> spin, FraisForfaitaires frais, int max){
