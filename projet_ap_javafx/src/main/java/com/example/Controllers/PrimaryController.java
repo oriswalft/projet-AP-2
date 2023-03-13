@@ -80,7 +80,6 @@ public class PrimaryController {
                 SecondaryController secondaryController = loader.getController();
                 secondaryController.changeInfos();
                 connect.getScene().setRoot(root);
-                id.endConnection(); // Déconnecte la connexion temporaire 'gsb' à la base de donnée et connecte avec les droits appropriés
             } catch (Exception e) {
                 e.printStackTrace();
             }

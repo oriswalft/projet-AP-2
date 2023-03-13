@@ -12,32 +12,29 @@ import java.time.LocalDate;
 
 import com.example.User;
 
-public class Identification {
+public class CoBdd {
 
     private final String dbURL = "jdbc:mysql://172.16.107.32:3306/projet ap2";
     private final String dbMDP = "";
 
-    private Connection conn;
-
-    public Identification() {
+    private Connection connectDb() {
         // Essaye de se connecter à la base de donnée
+        Connection conn;
+
         try {
             conn = DriverManager.getConnection(dbURL, "gsb", dbMDP);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public Identification(String username) {
-        try {
-            conn = DriverManager.getConnection(dbURL, username, dbMDP);
+            return conn;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     // Fonction qui vérifie que la paire nom d'utilisateur/ mot de passe est valide.
     public boolean validKey(String username, String password) {
+        Connection conn = connectDb();
         boolean matching = false;
         String hashedPw = "";
 
@@ -62,7 +59,6 @@ public class Identification {
                     return false;
                 } else {
 
-                    // TODO: requête avec INNER JOIN à modifier, imprécis
                     ResultSet user_info = req.executeQuery(
                             "SELECT DISTINCT matricule, genre, nom, prenom, id_type_vehicule, id_type_agent FROM utilisateur INNER JOIN type_vehicule ON id_type_vehicule = fk_type_vehicule INNER JOIN type_agent ON id_type_agent = fk_type_agent WHERE matricule = '"
                                     + res.getString("matricule") + "';");
@@ -80,15 +76,8 @@ public class Identification {
         return matching;
     }
 
-    public void endConnection() {
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     public double getFrais(String frais) {
+        Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
             ResultSet res = req
@@ -107,6 +96,7 @@ public class Identification {
     }
 
     public double fuelCost() {
+        Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
             ResultSet res = req.executeQuery(
@@ -123,6 +113,7 @@ public class Identification {
     }
 
     public int getQty(String name) {
+        Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
             ResultSet res = req.executeQuery("SELECT " + name + " FROM fiches_de_frais WHERE fk_utilisateurs = \""
@@ -139,6 +130,7 @@ public class Identification {
     }
 
     public void setQty(String name, int qty) {
+        Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
             req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
@@ -149,7 +141,7 @@ public class Identification {
     }
 
     public ResultSet fetchHF() throws SQLException {
-
+        Connection conn = connectDb();
         Statement req = conn.createStatement();
         ResultSet res = req
                 .executeQuery("SELECT * from frais_hors_forfaits WHERE fk_fraisHF=\"" + User.getMATRICULE() + "\";");
@@ -159,6 +151,7 @@ public class Identification {
     }
 
     public int addHF(String intitule, double cout) {
+        Connection conn = connectDb();
         try {
             String SQL = "INSERT INTO frais_hors_forfaits (id_fk_fraisHF, fk_fraisHF, intitules, cout) VALUES (?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
@@ -185,6 +178,7 @@ public class Identification {
     }
 
     public void updateHF(String intitule, double cout, int key) {
+        Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
             req.executeUpdate("UPDATE frais_hors_forfaits SET intitules = \"" + intitule + "\", cout = " + cout
@@ -195,6 +189,7 @@ public class Identification {
     }
 
     public void deleteHF(int key) {
+        Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
             req.executeUpdate("DELETE FROM frais_hors_forfaits WHERE id_fk_fraisHF = \" " + key + "\" ;");
@@ -204,6 +199,7 @@ public class Identification {
     }
 
     public LocalDate getDate(int key){
+        Connection conn = connectDb();
         @SuppressWarnings("deprecated")
         Date dateSql = new Date(2020, 9, 9);
         try {
@@ -222,6 +218,7 @@ public class Identification {
     }
 
     public void saveDate(LocalDate date, int key) {
+        Connection conn = connectDb();
         try {
             String sql = "UPDATE frais_hors_forfaits SET date = (?) WHERE id_fk_fraisHF = \" " + key + "\";";
             PreparedStatement statement = conn.prepareStatement(sql);
