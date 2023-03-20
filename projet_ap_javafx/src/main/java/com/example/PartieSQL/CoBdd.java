@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.Calendar;
 
 import com.example.User;
 
@@ -16,6 +17,16 @@ public class CoBdd {
 
     private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet_ap2";
     private final String dbMDP = "";
+    private final int mois = trouverMois()+1;
+
+    private int trouverMois(){
+        java.util.Date date= new java.util.Date();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        int month = cal.get(Calendar.MONTH);
+
+        return month;
+    }
 
     private Connection connectDb() {
         // Essaye de se connecter à la base de donnée
@@ -116,11 +127,15 @@ public class CoBdd {
         Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
-            ResultSet res = req.executeQuery("SELECT " + name + " FROM fiches_de_frais WHERE fk_utilisateurs = \""
-                    + User.getMATRICULE() + "\";");
+            ResultSet res = req.executeQuery("SELECT " + name + ", Date FROM fiches_de_frais WHERE fk_utilisateurs = \""
+                    + User.getMATRICULE() + "\" AND MONTH(Date) = " + mois + ";");
 
             if (res.next()) {
                 return res.getInt(name);
+            } else {
+                if (res.getRow() == 0){
+                    req.execute("INSERT INTO fiches_de_frais (fk_utilisateurs,Nuitee,Kilometre,Repas_midi) VALUES (\"" +User.getMATRICULE()+ "\", 0,0,0)");
+                }
             }
 
         } catch (SQLException e) {
@@ -133,12 +148,9 @@ public class CoBdd {
         Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
-            int affectedRow = req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
+            req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
                     + User.getMATRICULE() + "\" ;");
 
-            if(affectedRow == 0) {
-                req.execute("INSERT INTO fiche_de_frais (fk_utilisateurs,Nuitee,Kilometre,Repas_midi) VALUES (" +User.getMATRICULE()+ ", 0,0,0)");
-            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
