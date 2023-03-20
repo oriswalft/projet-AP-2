@@ -93,6 +93,7 @@ public class editerFiche {
             ResultSet res = id.fetchHF();
             while (res.next()){
 
+
                 FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"), id.getDate(res.getInt("id_fk_fraisHF")));
 
                 createHFRow(frais);
@@ -169,7 +170,11 @@ public class editerFiche {
 
         // La date
         DatePicker datePicker = new DatePicker();
-        datePicker.setValue(frais.getDate());
+
+        if (frais.getDate() != null){
+            datePicker.setValue(frais.getDate());
+        }
+        
         datePicker.setOnAction(e -> {
             LocalDate date = datePicker.getValue();
 

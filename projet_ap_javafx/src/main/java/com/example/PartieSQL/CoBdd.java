@@ -14,7 +14,7 @@ import com.example.User;
 
 public class CoBdd {
 
-    private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet ap2";
+    private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet_ap2";
     private final String dbMDP = "";
 
     private Connection connectDb() {
@@ -133,8 +133,12 @@ public class CoBdd {
         Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
-            req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
+            int affectedRow = req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
                     + User.getMATRICULE() + "\" ;");
+
+            if(affectedRow == 0) {
+                req.execute("INSERT INTO fiche_de_frais (fk_utilisateurs,Nuitee,Kilometre,Repas_midi) VALUES (" +User.getMATRICULE()+ ", 0,0,0)");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
