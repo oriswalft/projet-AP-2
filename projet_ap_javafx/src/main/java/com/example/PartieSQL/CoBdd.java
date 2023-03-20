@@ -14,7 +14,7 @@ import com.example.User;
 
 public class CoBdd {
 
-    private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet ap2";
+    private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet_ap2";
     private final String dbMDP = "";
 
     private Connection connectDb() {
@@ -51,7 +51,7 @@ public class CoBdd {
             // Requête SQL pour valider le couple et récupérer le matricule. Renvoie null si
             // aucun couple n'est trouvé
             ResultSet res = req.executeQuery(
-                    "SELECT DISTINCT matricule FROM projet_ap2.utilisateur WHERE mot_de_passe = '" + hashedPw
+                    "SELECT DISTINCT matricule FROM utilisateur WHERE mot_de_passe = '" + hashedPw
                             + "' AND username = '" + username + "';");
 
             if (res.next()) {

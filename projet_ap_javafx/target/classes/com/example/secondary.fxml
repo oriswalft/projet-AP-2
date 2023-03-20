@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<HBox fx:id="screen" prefHeight="600.0" prefWidth="1080.0" stylesheets="@../../../java/com/example/Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.SecondaryController">
+   <children>
+      <VBox fx:id="slidingMenuVBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="262.0" style="-fx-background-color: #345A93; -fx-background-radius: 20;" styleClass="menu" stylesheets="@../../../java/com/example/Stylesheet.css">
+         <children>
+            <FontIcon iconColor="WHITE" iconLiteral="fa-user-circle" iconSize="100">
+               <VBox.margin>
+                  <Insets bottom="50.0" top="50.0" />
+               </VBox.margin>
+            </FontIcon>
+            <HBox alignment="CENTER" prefHeight="73.0" prefWidth="262.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="username" alignment="CENTER" prefHeight="18.0" prefWidth="190.0" style="-fx-font-weight: bold;" text="name" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="type_agent" text="agent_type" textFill="WHITE">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Button fx:id="homeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="233.0" styleClass="userInfoBtn" text="Acceuil" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-home" styleClass="icon" text="" />
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="editButton" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" styleClass="userInfoBtn" text="Editer fiches de frais" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-pencil" styleClass="icon" />
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin></Button>
+            <Button fx:id="readButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToRead" prefHeight="26.0" prefWidth="291.0" styleClass="userInfoBtn" text="Consulter fiche de frais" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-folder-open" styleClass="icon" />
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btnDeco" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deco" prefHeight="74.0" prefWidth="66.0" style="-fx-background-color: transparent;" styleClass="userInfoBtn" text="Se déconnecter" textFill="WHITE">
+               <graphic>
+                  <FontIcon iconColor="WHITE" iconLiteral="fa-power-off" styleClass="icon" />
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="120.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <HBox.margin>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </HBox.margin>
+      </VBox>
+      <AnchorPane HBox.hgrow="ALWAYS">
+         <children>
+            <VBox fx:id="screenVBox" maxWidth="1.7976931348623157E308" prefHeight="600.0" prefWidth="818.0">
+               <children>
+                  <Pane fx:id="secPane" prefHeight="434.0" prefWidth="818.0" VBox.vgrow="ALWAYS" />
+               </children></VBox>
+            <Button fx:id="closeBtn" layoutX="778.0" layoutY="2.0" mnemonicParsing="false" onAction="#closeApp" style="-fx-background-color: transparent;">
+               <graphic>
+                  <FontIcon iconLiteral="fa-close" styleClass="closeBtn" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</HBox>
