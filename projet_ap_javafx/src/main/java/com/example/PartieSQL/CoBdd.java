@@ -51,7 +51,7 @@ public class CoBdd {
             // Requête SQL pour valider le couple et récupérer le matricule. Renvoie null si
             // aucun couple n'est trouvé
             ResultSet res = req.executeQuery(
-                    "SELECT DISTINCT matricule FROM projetap.utilisateur WHERE mot_de_passe = '" + hashedPw
+                    "SELECT DISTINCT matricule FROM utilisateur WHERE mot_de_passe = '" + hashedPw
                             + "' AND username = '" + username + "';");
 
             if (res.next()) {
@@ -81,7 +81,7 @@ public class CoBdd {
         try {
             Statement req = conn.createStatement();
             ResultSet res = req
-                    .executeQuery("SELECT name, cost from frais_forfaitises WHERE name = \"" + frais + "\";");
+                    .executeQuery("SELECT name, cost FROM frais_forfaitises WHERE name = \"" + frais + "\";");
             double cout = 0;
             if (res.next()) {
                 cout = res.getDouble("cost");
