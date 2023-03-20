@@ -14,7 +14,7 @@ import com.example.User;
 
 public class CoBdd {
 
-    private final String dbURL = "jdbc:mysql://172.16.107.32:3306/projet ap2";
+    private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet ap2";
     private final String dbMDP = "";
 
     private Connection connectDb() {
