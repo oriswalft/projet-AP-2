@@ -159,7 +159,7 @@ public class CoBdd {
         Connection conn = connectDb();
         Statement req = conn.createStatement();
         ResultSet res = req
-                .executeQuery("SELECT * from frais_hors_forfaits WHERE fk_fraisHF=\"" + User.getMATRICULE() + "\";");
+                .executeQuery("SELECT * from frais_hors_forfaits WHERE fk_fraisHF=\"" + User.getMATRICULE() + "\" AND MONTH(Date) = " + mois + ";");
 
         return res;
 
