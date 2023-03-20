@@ -198,14 +198,15 @@ public class CoBdd {
         }
     }
 
-    public LocalDate getDate(int key){
+    public LocalDate getDate(int key) {
         Connection conn = connectDb();
         @SuppressWarnings("deprecated")
         Date dateSql = new Date(2020, 9, 9);
         try {
             Statement req = conn.createStatement();
-            ResultSet res = req.executeQuery("SELECT Date FROM frais_hors_forfaits WHERE id_fk_fraisHF = \" " + key + "\";");
-            if(res.next()) {
+            ResultSet res = req
+                    .executeQuery("SELECT Date FROM frais_hors_forfaits WHERE id_fk_fraisHF = \" " + key + "\";");
+            if (res.next()) {
                 dateSql = res.getDate("Date");
             }
             return dateSql.toLocalDate();
