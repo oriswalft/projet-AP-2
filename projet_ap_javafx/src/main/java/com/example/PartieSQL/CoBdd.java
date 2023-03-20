@@ -81,7 +81,7 @@ public class CoBdd {
         try {
             Statement req = conn.createStatement();
             ResultSet res = req
-                    .executeQuery("SELECT name, cost from frais_forfaitises WHERE name = \"" + frais + "\";");
+                    .executeQuery("SELECT name, cost FROM frais_forfaitises WHERE name = \"" + frais + "\";");
             double cout = 0;
             if (res.next()) {
                 cout = res.getDouble("cost");
