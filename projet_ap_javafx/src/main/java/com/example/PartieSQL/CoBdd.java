@@ -216,7 +216,7 @@ public class CoBdd {
     public LocalDate getDate(int key) {
         Connection conn = connectDb();
         @SuppressWarnings("deprecated")
-        Date dateSql = new Date(2020, 9, 9);
+        Date dateSql = new Date(0);
         try {
             Statement req = conn.createStatement();
             ResultSet res = req
