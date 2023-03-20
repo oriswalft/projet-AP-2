@@ -148,9 +148,14 @@ public class CoBdd {
         Connection conn = connectDb();
         try {
             Statement req = conn.createStatement();
-            req.executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
-                    + User.getMATRICULE() + "\" ;");
+            int affectedRow = req
+                    .executeUpdate("UPDATE fiches_de_frais SET " + name + " = " + qty + " WHERE fk_utilisateurs = \""
+                            + User.getMATRICULE() + "\" ;");
 
+            if (affectedRow == 0) {
+                req.execute("INSERT INTO fiches_de_frais (fk_utilisateurs,Nuitee,Kilometre,Repas_midi) VALUES (\""
+                        + User.getMATRICULE() + "\", 0,0,0)");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
