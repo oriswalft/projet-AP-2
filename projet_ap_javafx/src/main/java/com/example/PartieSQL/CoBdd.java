@@ -15,7 +15,7 @@ import com.example.User;
 
 public class CoBdd {
 
-    private final String dbURL = "jdbc:mysql://172.16.107.19:3306/projet_ap2";
+    private final String dbURL = "jdbc:mysql://172.16.107.23:3306/projet_ap2";
     private final String dbMDP = "";
     private final int mois = trouverMois()+1;
 
