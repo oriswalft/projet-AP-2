@@ -100,7 +100,6 @@ public class SecondaryController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         if (User.getTYPE_AGENT() == 2 ){
-            System.out.println(true);
             slidingMenuVBox.getChildren().removeAll(visitorContainer, editButton, readButton);
         }
     }
