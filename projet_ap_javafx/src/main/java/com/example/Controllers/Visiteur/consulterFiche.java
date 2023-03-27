@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import com.example.FicheDeFrais;
-import com.example.FraisForfaitaires;
-import com.example.FraisHForfait;
 import com.example.User;
+import com.example.Frais.FicheDeFrais;
+import com.example.Frais.FraisForfaitaires;
+import com.example.Frais.FraisHForfait;
 import com.example.PartieSQL.CoBdd;
 
 import javafx.beans.value.ChangeListener;

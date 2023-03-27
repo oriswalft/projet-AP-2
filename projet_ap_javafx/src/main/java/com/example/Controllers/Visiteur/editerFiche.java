@@ -8,8 +8,8 @@ import java.util.Date;
 
 import org.kordamp.ikonli.javafx.FontIcon;
 
-import com.example.FraisForfaitaires;
-import com.example.FraisHForfait;
+import com.example.Frais.FraisForfaitaires;
+import com.example.Frais.FraisHForfait;
 import com.example.PartieSQL.CoBdd;
 
 import javafx.collections.FXCollections;

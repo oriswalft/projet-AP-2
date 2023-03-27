@@ -1,4 +1,4 @@
-package com.example;
+package com.example.Frais;
 
 import com.example.PartieSQL.CoBdd;
 
@@ -24,7 +24,7 @@ public class FraisForfaitaires {
         this.nom = nom;
         this.qte = new SimpleIntegerProperty(qte);
         this.montantU = montantU;
-        
+
         this.total = new SimpleDoubleProperty(0);
         this.total.bind(this.qte.multiply(getMontantU()));
     }
