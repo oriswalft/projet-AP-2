@@ -1,6 +1,9 @@
 package com.example.Controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import com.example.App;
 import com.example.Navigation;
 import com.example.User;
@@ -9,6 +12,7 @@ import com.example.Controllers.Visiteur.editerFiche;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,37 +20,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class SecondaryController {
+public class SecondaryController implements Initializable{
 
     @FXML
-    private Button btnDeco;
+    private Button btnDeco, closeBtn, editButton, homeBtn, readButton;
 
     @FXML
-    private Button btnHome;
+    private HBox screen;
 
     @FXML
-    private Label username;
-    
-    @FXML
-    private Button editButton;
-
-    @FXML
-    private Button readButton;
-
-    @FXML
-    private Label type_agent;
-
-    @FXML
-    private VBox screenVBox;
-
-    @FXML
-    private VBox slidingMenuVBox;
+    private VBox screenVBox, slidingMenuVBox, visitorContainer;
 
     @FXML
     private Pane secPane;
-    
+
     @FXML
-    private HBox screen;
+    private Label type_agent, username;
+
 
     public void changeInfos() throws IOException {
         // Changement des labels
@@ -104,5 +94,14 @@ public class SecondaryController {
     @FXML
     void closeApp (ActionEvent action){
         System.exit(0);
+    }
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        if (User.getTYPE_AGENT() == 2 ){
+            System.out.println(true);
+            slidingMenuVBox.getChildren().removeAll(visitorContainer, editButton, readButton);
+        }
     }
 }
