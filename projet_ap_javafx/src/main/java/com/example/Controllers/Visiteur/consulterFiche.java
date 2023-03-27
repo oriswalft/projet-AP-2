@@ -31,9 +31,6 @@ public class consulterFiche implements Initializable{
     HashMap<String, FicheDeFrais> listeDeFiches = new HashMap<>();
     private final CoBdd CONNEXION_BDD = new CoBdd();
 
-    public consulterFiche(){
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -92,7 +89,6 @@ public class consulterFiche implements Initializable{
         );
 
         for (FraisHForfait i : frais.getFraisHForfaits()){
-            System.out.println("Called");
             fichesViewVBox.getChildren().add(
                 new Label(i.getIntitule() + ":" + i.getCout() + i.getDate())
             );

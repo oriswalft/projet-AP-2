@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<HBox fx:id="screen" prefHeight="600.0" prefWidth="1080.0" stylesheets="@../../../java/com/example/Stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.SecondaryController">
+<HBox fx:id="screen" prefHeight="600.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.SecondaryController">
    <children>
-      <VBox fx:id="slidingMenuVBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="262.0" style="-fx-background-color: #345A93; -fx-background-radius: 20;" styleClass="menu" stylesheets="@../../../java/com/example/Stylesheet.css">
+      <VBox fx:id="slidingMenuVBox" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="262.0" style="-fx-background-color: #345A93; -fx-background-radius: 20;" styleClass="menu">
          <children>
             <FontIcon iconColor="WHITE" iconLiteral="fa-user-circle" iconSize="100">
                <VBox.margin>
@@ -40,38 +40,43 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="homeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="233.0" styleClass="userInfoBtn" text="Acceuil" textFill="WHITE">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fa-home" styleClass="icon" text="" />
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Button>
-            <Button fx:id="editButton" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" styleClass="userInfoBtn" text="Editer fiches de frais" textFill="WHITE">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fa-pencil" styleClass="icon" />
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin></Button>
-            <Button fx:id="readButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToRead" prefHeight="26.0" prefWidth="291.0" styleClass="userInfoBtn" text="Consulter fiche de frais" textFill="WHITE">
-               <graphic>
-                  <FontIcon iconColor="WHITE" iconLiteral="fa-folder-open" styleClass="icon" />
-               </graphic>
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="30.0" />
-               </VBox.margin>
-            </Button>
+            <VBox fx:id="visitorContainer" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Button fx:id="homeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="233.0" styleClass="userInfoBtn" text="Acceuil" textFill="WHITE">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-home" styleClass="icon" text="" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="editButton" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToEdit" prefHeight="26.0" styleClass="userInfoBtn" text="Editer fiches de frais" textFill="WHITE">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-pencil" styleClass="icon" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="readButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToRead" prefHeight="26.0" prefWidth="291.0" styleClass="userInfoBtn" text="Consulter fiche de frais" textFill="WHITE">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-folder-open" styleClass="icon" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
             <Button fx:id="btnDeco" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deco" prefHeight="74.0" prefWidth="66.0" style="-fx-background-color: transparent;" styleClass="userInfoBtn" text="Se déconnecter" textFill="WHITE">
                <graphic>
                   <FontIcon iconColor="WHITE" iconLiteral="fa-power-off" styleClass="icon" />
