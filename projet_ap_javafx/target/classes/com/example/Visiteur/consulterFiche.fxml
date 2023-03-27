@@ -8,10 +8,11 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.3228609625668449" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="818.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.3228609625668449" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="818.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.Visiteur.consulterFiche">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #FFFFFF;">
          <children>
@@ -37,7 +38,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </HBox>
-            <ListView layoutX="13.0" layoutY="54.0" prefHeight="373.0" prefWidth="237.0" style="-fx-background-color: #e7e7e7; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
+            <ListView fx:id="fichesListView" layoutX="13.0" layoutY="54.0" prefHeight="373.0" prefWidth="237.0" style="-fx-background-color: #e7e7e7; -fx-background-radius: 10;" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="54.0">
                <effect>
                   <DropShadow blurType="GAUSSIAN" height="38.59" radius="18.0625" spread="0.17" width="35.66">
                      <color>
@@ -47,10 +48,11 @@
                </effect>
             </ListView>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="550.0">
+      <VBox fx:id="fichesViewVBox">
          <children>
-            <Label alignment="CENTER" layoutX="168.0" layoutY="291.0" text="Sélectionnez une fiche pour commencer." />
-         </children></AnchorPane>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="74.0" prefWidth="551.0" text="Sélectionnez une fiche pour commencer." textAlignment="CENTER" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
   </items>
    <cursor>
       <Cursor fx:constant="H_RESIZE" />

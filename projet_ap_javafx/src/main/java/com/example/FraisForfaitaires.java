@@ -20,6 +20,15 @@ public class FraisForfaitaires {
         this.total.bind(qte.multiply(getMontantU()));
     }
 
+    public FraisForfaitaires(String nom, Double montantU, int qte) {
+        this.nom = nom;
+        this.qte = new SimpleIntegerProperty(qte);
+        this.montantU = montantU;
+        
+        this.total = new SimpleDoubleProperty(0);
+        this.total.bind(this.qte.multiply(getMontantU()));
+    }
+
     public String getNom() {
         return nom;
     }

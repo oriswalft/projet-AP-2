@@ -165,6 +165,16 @@ public class CoBdd {
 
     }
 
+    public ResultSet fetchHF(int mois) throws SQLException {
+        Connection conn = connectDb();
+        Statement req = conn.createStatement();
+        ResultSet res = req
+                .executeQuery("SELECT * from frais_hors_forfaits WHERE fk_fraisHF=\"" + User.getMATRICULE() + "\" AND MONTH(Date) = " + mois + ";");
+
+        return res;
+
+    }
+
     public int addHF(String intitule, double cout) {
         Connection conn = connectDb();
         try {
@@ -242,5 +252,21 @@ public class CoBdd {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ResultSet fetchFiches(String matricule){
+        Connection conn = connectDb();
+        try {
+            String sql = "SELECT * FROM fiches_de_frais WHERE fk_utilisateurs = (?);";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, matricule);
+            ResultSet res = statement.executeQuery();
+
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 }
