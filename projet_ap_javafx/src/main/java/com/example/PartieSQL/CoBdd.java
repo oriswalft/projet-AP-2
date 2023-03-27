@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-import com.example.User;
+import com.example.Utils.User;
 
 public class CoBdd {
 
