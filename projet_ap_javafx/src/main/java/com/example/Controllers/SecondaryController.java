@@ -35,27 +35,7 @@ public class SecondaryController implements Initializable{
     private Pane secPane;
 
     @FXML
-    private Label type_agent, username;
-
-
-    public void changeInfos() throws IOException {
-        // Changement des labels
-        String type_agent_str = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
-        String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
-        username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
-        type_agent.setText(type_agent_str);
-
-        // Permet de déplacer la fenêtre, impossible sinon
-        screen.setOnMousePressed(pressEvent -> {
-            screen.setOnMouseDragged(dragEvent -> {
-                screen.getScene().getWindow().setX(dragEvent.getScreenX() - pressEvent.getSceneX());
-                screen.getScene().getWindow().setY(dragEvent.getScreenY() - pressEvent.getSceneY());
-            });
-        });
-
-        secPane.getChildren().add(Navigation.getFXML("Visiteur/accueil.fxml"));
-    }
-    
+    private Label type_agent, username;    
 
     @FXML
     void deco() throws IOException{
@@ -66,13 +46,8 @@ public class SecondaryController implements Initializable{
 
     @FXML
     void goToEdit(ActionEvent event) throws IOException {
-        // Créé la VBox qui sert à afficher l'onglet désiré et l'affiche.
+        // Charge le fichier FXML et l'affiche
 
-        /*
-        VisiteurEditionFrais display = new VisiteurEditionFrais();
-        VBox box = display.createDisplay();
-        screenVBox.getChildren().setAll(box);
-         */
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("Visiteur/editerFiche.fxml"));
         Parent secPaneRoot = fxmlLoader.load();
         editerFiche editerFiche = fxmlLoader.getController();
@@ -99,8 +74,34 @@ public class SecondaryController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        // Changement des labels
+        String type_agent_str = (User.getTYPE_AGENT() == 1) ? "Visiteur" : "Comptable";
+        String sexe = (User.getGENRE() == 1) ? "Mme. " : "M. ";
+        username.setText(sexe + User.getNOM() + " " + User.getPRENOM() );
+        type_agent.setText(type_agent_str);
+
+        // Permet de déplacer la fenêtre, impossible sinon
+        screen.setOnMousePressed(pressEvent -> {
+            screen.setOnMouseDragged(dragEvent -> {
+                screen.getScene().getWindow().setX(dragEvent.getScreenX() - pressEvent.getSceneX());
+                screen.getScene().getWindow().setY(dragEvent.getScreenY() - pressEvent.getSceneY());
+            });
+        });
+
+        // Récupère l'accueil pour le deuxième Pane
+        try {
+            secPane.getChildren().add(Navigation.getFXML("Visiteur/accueil.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // Enlève les boutons d'édition et de consultation pour les comptables.
         if (User.getTYPE_AGENT() == 2 ){
             slidingMenuVBox.getChildren().removeAll(visitorContainer, editButton, readButton);
+        } else {
+            // TODO: Créer les boutons pour les comptables
         }
     }
 }
