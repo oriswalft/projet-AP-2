@@ -7,11 +7,6 @@ public class FicheDeFrais {
     private ArrayList<FraisHForfait> fraisHForfaits = new ArrayList<>();
 
 
-    // TODO: connecter à la base de donnée
-    public FicheDeFrais(){
-        
-    }
-
     public ArrayList<FraisForfaitaires> getFraisForfaitaires() {
         return fraisForfaitaires;
     }

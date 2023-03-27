@@ -66,7 +66,6 @@ public class FraisHForfait {
     }
 
 
-    // TODO : Réparer la date
     public void setDate(LocalDate date) {
         this.date = date;
         id.saveDate(date, this.key);
