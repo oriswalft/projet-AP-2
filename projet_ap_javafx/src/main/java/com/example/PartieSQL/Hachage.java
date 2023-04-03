@@ -22,7 +22,9 @@ public class Hachage {
     private static String convertToHex(final byte[] messageDigest) {
         BigInteger bigint = new BigInteger(1, messageDigest);
         String hexText = bigint.toString(16);
+
         while (hexText.length() < 32) {
+            // Ajouter autant de 0 qu'il manque au début de la chaîne de caractère, afin d'éviter tout problème
             hexText = "0".concat(hexText);
         }
         return hexText;

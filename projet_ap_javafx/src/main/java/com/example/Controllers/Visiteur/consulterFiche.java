@@ -22,28 +22,36 @@ import javafx.scene.layout.VBox;
 
 public class consulterFiche implements Initializable{
 
+    /*
+     * Controller pour le fichier "consulterFiche.fxml"
+     */
+
     @FXML
     private VBox fichesViewVBox;
 
     @FXML
     private ListView<String> fichesListView;
 
+
+    // Pourquoi un HashMap ? Car j'avais besoin du nom de la variable 
     HashMap<String, FicheDeFrais> listeDeFiches = new HashMap<>();
     private final CoBdd CONNEXION_BDD = new CoBdd();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        // Essaye de récupérer les fiches depuis la base de données.
         try {
             obtenirFiches();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+        // Ajoute chaque élément du HashMap à ListView
         listeDeFiches.forEach((k,v) ->{
             fichesListView.getItems().add(k);
         });
 
+        // Vérifie quel élément est sélectionné, puis affiche la fiche du mois correspondant.
         fichesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -60,10 +68,12 @@ public class consulterFiche implements Initializable{
 
             FicheDeFrais fiche = new FicheDeFrais();
 
+            // Ajoute chaque frais forfaitaire à la ArrayList "fraisForfaitaires" de la classe fiche de frais.
             fiche.getFraisForfaitaires().add(new FraisForfaitaires("Nuitee", CONNEXION_BDD.getFrais("Nuitee"), fichesUser.getInt("Nuitee")));
             fiche.getFraisForfaitaires().add(new FraisForfaitaires("Kilometre", CONNEXION_BDD.getFrais("Kilometre"),fichesUser.getInt("Kilometre")));
             fiche.getFraisForfaitaires().add(new FraisForfaitaires("Repas_midi", CONNEXION_BDD.getFrais("Repas_midi"), fichesUser.getInt("Repas_midi")));
 
+            // Récupère les frais hors forfaits du mois sélectionné
             ResultSet res = CONNEXION_BDD.fetchHF(fichesUser.getDate("Date").toLocalDate().getMonth().getValue());
             while (res.next()){
 
@@ -81,6 +91,7 @@ public class consulterFiche implements Initializable{
     }
 
     private void peuplerAnchorPane(FicheDeFrais frais){
+        // Ajoute les éléments du mois correspondant à l'AnchorPane.
         fichesViewVBox.getChildren().clear();
         fichesViewVBox.getChildren().addAll(
             new Label("Nuitées :" + frais.getFraisForfaitaires().get(0).getQte().get()),

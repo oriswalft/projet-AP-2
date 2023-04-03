@@ -13,17 +13,32 @@ import java.util.Calendar;
 
 import com.example.Utils.User;
 
+/*
+ * Fichier qui sert à se connecter à la base de données MySQL, localisée sur le PC d'Aymeric.
+ * Il faut appeler la fonction connectDb() dans chaque méthode, afin d'attribuer une seule réponse 
+ * à une connexion.
+ * 
+ * TODO: Remplacer toutes les requêtes par des requêtes préparées.
+ */
+
 public class CoBdd {
 
     private final String dbURL = "jdbc:mysql://172.16.107.23:3306/projet_ap2";
     private final String dbMDP = "";
-    private final int mois = trouverMois()+1;
+    private final int mois = trouverMois(); // Récupère le mois en cours, afin de récupérer la fiche du mois. 
 
     private int trouverMois(){
         java.util.Date date= new java.util.Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
+
+        int jour = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
+
+        // TODO: Modifier le "15" pour récupérer la date de l'énoncé.
+        if (jour > 15){
+            month = month+1;
+        }
 
         return month;
     }

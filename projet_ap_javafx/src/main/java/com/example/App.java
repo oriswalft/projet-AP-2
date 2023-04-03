@@ -12,6 +12,10 @@ import java.io.IOException;
 
 public class App extends Application {
 
+    /*
+     * Classe principale de l'application, celle qui sert à tout lancer.
+     */
+
     private static Scene scene;
 
     @Override

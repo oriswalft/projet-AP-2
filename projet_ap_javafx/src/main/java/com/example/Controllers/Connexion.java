@@ -17,7 +17,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
-public class PrimaryController {
+public class Connexion {
 
     @FXML
     private Button connect, closebtn;

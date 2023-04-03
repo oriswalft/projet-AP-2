@@ -9,6 +9,10 @@ import javafx.scene.Parent;
 
 public class Navigation {
 
+    /*
+     * Classe qui sert à naviguer dans l'application.
+     */
+
     public static Parent getFXML(String fxml) throws IOException {
         return loadFXML(fxml);
     }

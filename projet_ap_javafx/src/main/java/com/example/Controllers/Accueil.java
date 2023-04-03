@@ -20,7 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class SecondaryController implements Initializable{
+public class Accueil implements Initializable{
 
     @FXML
     private Button btnDeco, closeBtn, editButton, homeBtn, readButton;

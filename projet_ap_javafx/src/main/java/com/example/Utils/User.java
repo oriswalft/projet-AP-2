@@ -5,6 +5,11 @@ import java.sql.SQLException;
 
 public class User {
 
+    /*
+     * Classe qui sert à retenir les informations de l'utilisateur.
+     * "static" car il ne peut y avoir qu'un utilisateur par session.
+     */
+
     private static String MATRICULE;
     private static int GENRE;
     private static String NOM;
