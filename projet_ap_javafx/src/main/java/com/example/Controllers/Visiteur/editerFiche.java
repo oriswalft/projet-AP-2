@@ -29,6 +29,7 @@ import javafx.scene.paint.Color;
 
 public class editerFiche {
     private final CoBdd id = new CoBdd();
+    private int month;
     private ObservableList<FraisHForfait> hfListe = FXCollections.observableArrayList();
     private ObservableList<FraisForfaitaires> ffListe = FXCollections.observableArrayList();
 
@@ -63,7 +64,11 @@ public class editerFiche {
         java.util.Date date= new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        int month = cal.get(Calendar.MONTH);
+        if (cal.get(Calendar.DAY_OF_MONTH) > 15){
+            month = cal.get(Calendar.MONTH);
+        } else {
+            month = cal.get(Calendar.MONTH) -1;
+        }
         String mois = moisList[month];
 
         titleLabel.setText("Edition de la fiche du mois de " + mois +":");
@@ -178,7 +183,7 @@ public class editerFiche {
         datePicker.setOnAction(e -> {
             LocalDate date = datePicker.getValue();
 
-            if (date.getMonthValue() != LocalDate.now().getMonthValue() || date.getYear() != LocalDate.now().getYear()){
+            if (date.getMonthValue() != month+1 || date.getYear() != LocalDate.now().getYear()){
                 Alert alert = new Alert(AlertType.WARNING);
                 alert.setContentText("La date saisie est différente du mois en cours. Veuillez choisir une date valide et recommencez!");
                 alert.show();

@@ -17,8 +17,7 @@ import com.example.Utils.User;
  * Fichier qui sert à se connecter à la base de données MySQL, localisée sur le PC d'Aymeric.
  * Il faut appeler la fonction connectDb() dans chaque méthode, afin d'attribuer une seule réponse 
  * à une connexion.
- * 
- * TODO: Remplacer toutes les requêtes par des requêtes préparées.
+
  */
 
 public class CoBdd {
@@ -168,7 +167,7 @@ public class CoBdd {
     public void setQty(String name, int qty) {
         Connection conn = connectDb();
         try {
-            String query = "UPDATE fiches_de_frais SET " + name + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ?";
+            String query = "UPDATE fiches_de_frais SET " + name + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > 15";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, qty);
             statement.setString(2, User.getMATRICULE());
@@ -218,10 +217,10 @@ public class CoBdd {
             statement.executeBatch();
 
             ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next())
+            if (rs.next()){
                 return rs.getInt(1);
-            else
-                return -1;
+            }
+            else return -1;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -232,6 +231,7 @@ public class CoBdd {
 
     public void updateHF(String intitule, double cout, int key) {
         Connection conn = connectDb();
+        System.out.println("[I] Updating...");
         try {
             String query = "UPDATE frais_hors_forfaits SET intitules = ?, cout = ? WHERE id_fk_fraisHF = ?";
             PreparedStatement statement = conn.prepareStatement(query);
