@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="818.0" spacing="20.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.Controllers.Visiteur.editerFiche">
+   <children>
+      <Label fx:id="titleLabel" alignment="CENTER" prefHeight="51.0" prefWidth="1152.0" text="Edition de la fiche du mois de %mois% :">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <GridPane alignment="CENTER" style="-fx-background-color: #e3eeff; -fx-background-radius: 20;">
+        <columnConstraints>
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="353.39996337890625" minWidth="10.0" prefWidth="304.5999755859375" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="296.20001220703125" minWidth="10.0" prefWidth="295.4000244140625" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="296.20001220703125" minWidth="10.0" prefWidth="295.4000244140625" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="296.20001220703125" minWidth="10.0" prefWidth="295.4000244140625" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="609.0" text="Frais forfaitaires" underline="true" wrapText="true" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="215.0" text="Intitulé" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="250.0" text="Quantité" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="223.0" text="Total" GridPane.columnIndex="3" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="218.0" text="Nuitées" GridPane.rowIndex="2" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="212.0" text="Repas midi" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" prefHeight="18.0" prefWidth="238.0" text="Kilomètres" GridPane.rowIndex="4" />
+            <Label fx:id="nuiteeLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="midiLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label fx:id="kmLabel" alignment="CENTER" prefHeight="18.0" prefWidth="214.0" text="0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Spinner fx:id="nuiteeSpinner" editable="true" prefHeight="25.0" prefWidth="325.0" stylesheets="@../../../../java/com/example/Stylesheet.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Spinner fx:id="midiSpinner" prefHeight="25.0" prefWidth="271.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Spinner fx:id="kmSpinner" prefHeight="25.0" prefWidth="276.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Coût" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="nuiteeCoutLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label fx:id="midiCoutLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label fx:id="kmCoutLabel" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+         </children>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="10.0" top="10.0" />
+         </padding>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="44.45" radius="27.587500000000002" width="67.9">
+               <color>
+                  <Color opacity="0.2977099120616913" />
+               </color>
+            </DropShadow>
+         </effect>
+      </GridPane>
+      <Label alignment="CENTER" prefHeight="18.0" prefWidth="609.0" text="Frais hors-forfaits" underline="true" wrapText="true">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <ScrollPane hbarPolicy="NEVER" maxHeight="300.0" pannable="true" prefViewportHeight="200.0" style="-fx-background-radius: 20; -fx-border-radius: 20;" vbarPolicy="ALWAYS" vmin="-0.05">
+         <content>
+            <GridPane fx:id="HFGridPane" alignment="CENTER" hgap="20.0" minHeight="0.0" prefWidth="805.0" vgap="5.0">
+              <columnConstraints>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="intituleLabel" alignment="CENTER" prefHeight="18.0" prefWidth="314.0" text="Intitulé">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="coutLabel" alignment="CENTER" prefHeight="18.0" prefWidth="215.0" text="Coût" GridPane.columnIndex="1">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="ajoutButton" alignment="CENTER" mnemonicParsing="false" onAction="#showNewDialog" prefHeight="26.0" prefWidth="45.0" style="-fx-background-color: transparent;" textFill="#19c441" GridPane.columnIndex="3">
+                     <graphic>
+                        <FontIcon iconColor="#64cf6b" iconLiteral="fa-plus" />
+                     </graphic></Button>
+                  <Label fx:id="dateLabel" text="Date" wrapText="true" GridPane.columnIndex="2">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </content>
+         <effect>
+            <DropShadow blurType="GAUSSIAN" height="62.03" radius="29.05" width="56.17">
+               <color>
+                  <Color opacity="0.2977099120616913" />
+               </color>
+            </DropShadow>
+         </effect>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <VBox.margin>
+            <Insets left="10.0" right="10.0" />
+         </VBox.margin>
+      </ScrollPane>
+      <Label fx:id="totalFraisLabel" text="Total des frais engagés ce mois-ci :">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

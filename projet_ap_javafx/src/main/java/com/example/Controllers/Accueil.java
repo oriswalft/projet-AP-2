@@ -41,7 +41,7 @@ public class Accueil implements Initializable{
     void deco() throws IOException{
         // Renvoie toutes les valeur de User à null (bloque l'accès) et renvoie à la page de connexion
         User.deco();
-        App.setRoot("primary");
+        App.setRoot("connexion");
     }
 
     @FXML
@@ -99,9 +99,7 @@ public class Accueil implements Initializable{
 
         // Enlève les boutons d'édition et de consultation pour les comptables.
         if (User.getTYPE_AGENT() == 2 ){
-            slidingMenuVBox.getChildren().removeAll(visitorContainer, editButton, readButton);
-        } else {
-            // TODO: Créer les boutons pour les comptables
+            visitorContainer.getChildren().removeAll(editButton,readButton);
         }
     }
 }

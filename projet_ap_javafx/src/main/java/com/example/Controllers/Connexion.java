@@ -65,7 +65,7 @@ public class Connexion {
 
         if (id.validKey(us, pw)){   // Compare la paire saisie, et passe à l'écran suivant si valide.
             try {   // Charge la classe du second controlleur et met à jour son contenu
-                App.setRoot("secondary");
+                App.setRoot("accueil");
             } catch (Exception e) {
                 e.printStackTrace();
             }
