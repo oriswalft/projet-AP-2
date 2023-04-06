@@ -34,7 +34,8 @@ public class editerFiche {
     private ObservableList<FraisForfaitaires> ffListe = FXCollections.observableArrayList();
 
     @FXML
-    private Label titleLabel, coutLabel, intituleLabel, kmLabel, midiLabel, nuiteeLabel, dateLabel, nuiteeCoutLabel, midiCoutLabel, kmCoutLabel, totalFraisLabel;
+    private Label titleLabel, coutLabel, intituleLabel, kmLabel, midiLabel, nuiteeLabel, dateLabel, nuiteeCoutLabel,
+            midiCoutLabel, kmCoutLabel, totalFraisLabel;
 
     @FXML
     private GridPane HFGridPane;
@@ -57,29 +58,28 @@ public class editerFiche {
         hfListe.add(frais);
     }
 
-    public void load(){
+    public void load() {
         // Mise à jour du label en fonction du mois séléctionné :
-        String[] moisList = {"janvier","février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","décembre"};
+        String[] moisList = { "janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre",
+                "octobre", "novembre", "décembre" };
 
-        java.util.Date date= new Date();
+        java.util.Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        if (cal.get(Calendar.DAY_OF_MONTH) > 15){
+        if (cal.get(Calendar.DAY_OF_MONTH) > 15) {
             month = cal.get(Calendar.MONTH);
         } else {
-            month = cal.get(Calendar.MONTH) -1;
+            month = cal.get(Calendar.MONTH) - 1;
         }
         String mois = moisList[month];
 
-        titleLabel.setText("Edition de la fiche du mois de " + mois +":");
+        titleLabel.setText("Edition de la fiche du mois de " + mois + ":");
 
         // Création de l'objet du frais
-        FraisForfaitaires nuiteeFrais = new FraisForfaitaires("Nuitee", id.getFrais("nuitee"));
+        FraisForfaitaires nuiteeFrais = new FraisForfaitaires("qteNuitee", id.getFrais("nuitee"));
         FraisForfaitaires midiFrais = new FraisForfaitaires("Repas_midi", id.getFrais("midi"));
         FraisForfaitaires kilometresFrais = new FraisForfaitaires("Kilometre", id.fuelCost());
         ffListe.addAll(nuiteeFrais, midiFrais, kilometresFrais);
-
-
 
         // Bind des propriétés au label des total
         kmLabel.textProperty().bind(kilometresFrais.getTotal().asString());
@@ -90,16 +90,16 @@ public class editerFiche {
         nuiteeCoutLabel.setText(Double.toString(nuiteeFrais.getMontantU()));
 
         // Ajout des value factory des spinner
-        updateSpinner(kmSpinner, kilometresFrais,9999);
-        updateSpinner(nuiteeSpinner, nuiteeFrais,31);
-        updateSpinner(midiSpinner, midiFrais,31);
+        updateSpinner(kmSpinner, kilometresFrais, 9999);
+        updateSpinner(nuiteeSpinner, nuiteeFrais, 31);
+        updateSpinner(midiSpinner, midiFrais, 31);
 
         try {
             ResultSet res = id.fetchHF();
-            while (res.next()){
+            while (res.next()) {
 
-
-                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"), res.getInt("id_fk_fraisHF"), id.getDate(res.getInt("id_fk_fraisHF")));
+                FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"),
+                        res.getInt("id_utilisateur"), id.getDate(res.getInt("id_utilisateur")));
 
                 createHFRow(frais);
                 hfListe.add(frais);
@@ -109,30 +109,30 @@ public class editerFiche {
         }
 
         double totalFrais = 0;
-        for (FraisHForfait f : hfListe){
+        for (FraisHForfait f : hfListe) {
             totalFrais += f.getCout();
         }
 
-        for (FraisForfaitaires f : ffListe){
-            totalFrais+= f.getTotal().get();
+        for (FraisForfaitaires f : ffListe) {
+            totalFrais += f.getTotal().get();
         }
         totalFraisLabel.setText("Total des frais engagés ce mois-ci : " + totalFrais + "€.");
     }
 
-    private void updateSpinner(Spinner<Integer> spin, FraisForfaitaires frais, int max){
-        spin.setValueFactory( new SpinnerValueFactory.IntegerSpinnerValueFactory(0,max,frais.getQte().intValue()));
+    private void updateSpinner(Spinner<Integer> spin, FraisForfaitaires frais, int max) {
+        spin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, frais.getQte().intValue()));
         spin.valueProperty().addListener((obs, oldValue, newValue) -> {
             frais.setSpinnerValue(newValue);
         });
         spin.setEditable(true);
-    }  
+    }
 
-    private void updateHFGrid(){
+    private void updateHFGrid() {
         // Remise à zéro :
         HFGridPane.getChildren().clear();
 
         // Rajout de la première ligne:
-        HFGridPane.addRow(0, intituleLabel, coutLabel,dateLabel, ajoutButton);
+        HFGridPane.addRow(0, intituleLabel, coutLabel, dateLabel, ajoutButton);
 
         // Ajout des lignes qui n'ont pas été supprimées :
         hfListe.forEach(e -> {
@@ -140,7 +140,7 @@ public class editerFiche {
         });
     }
 
-    private Button createDeleteButton(FraisHForfait frais){
+    private Button createDeleteButton(FraisHForfait frais) {
         // Création du bouton :
         Button button = new Button();
         // Ajout de l'icone en rouge et fond transparent :
@@ -158,13 +158,13 @@ public class editerFiche {
         return button;
     }
 
-    private void createHFRow(FraisHForfait frais){
+    private void createHFRow(FraisHForfait frais) {
         // Récupération du nombre de ligne pour permettre d'ajouter à la fin :
         int nombreLigne = HFGridPane.getRowCount();
 
         // Création des zones de textes et récupération automatique du texte :
         TextField intituleTextFiled = new TextField();
-        intituleTextFiled.setOnKeyReleased( e -> frais.setIntitule(intituleTextFiled.getText()));
+        intituleTextFiled.setOnKeyReleased(e -> frais.setIntitule(intituleTextFiled.getText()));
         intituleTextFiled.setText(frais.getIntitule());
         intituleTextFiled.setPromptText("Intitulé");
 
@@ -176,16 +176,17 @@ public class editerFiche {
         // La date
         DatePicker datePicker = new DatePicker();
 
-        if (frais.getDate() != null){
+        if (frais.getDate() != null) {
             datePicker.setValue(frais.getDate());
         }
-        
+
         datePicker.setOnAction(e -> {
             LocalDate date = datePicker.getValue();
 
-            if (date.getMonthValue() != month+1 || date.getYear() != LocalDate.now().getYear()){
+            if (date.getMonthValue() != month + 1 || date.getYear() != LocalDate.now().getYear()) {
                 Alert alert = new Alert(AlertType.WARNING);
-                alert.setContentText("La date saisie est différente du mois en cours. Veuillez choisir une date valide et recommencez!");
+                alert.setContentText(
+                        "La date saisie est différente du mois en cours. Veuillez choisir une date valide et recommencez!");
                 alert.show();
                 e.consume();
             } else {
@@ -193,11 +194,10 @@ public class editerFiche {
             }
         });
 
-
         // Création du bouton pour supprimer la ligne et mettre à jour l'affichage :
         Button removeBtn = createDeleteButton(frais);
 
-        // Ajout des éléments à la grille. 
-        HFGridPane.addRow(nombreLigne, intituleTextFiled,coutTextField,datePicker,removeBtn);
+        // Ajout des éléments à la grille.
+        HFGridPane.addRow(nombreLigne, intituleTextFiled, coutTextField, datePicker, removeBtn);
     }
 }
