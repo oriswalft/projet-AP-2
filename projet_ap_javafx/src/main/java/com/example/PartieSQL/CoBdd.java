@@ -33,7 +33,7 @@ public class CoBdd {
 
         int jour = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
-
+        // TODO: Documenter les requetes sql
         // TODO: Modifier le "15" pour récupérer la date de l'énoncé.
         if (jour > 10) {
             month = month + 1;
