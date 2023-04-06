@@ -99,7 +99,7 @@ public class editerFiche {
             while (res.next()) {
 
                 FraisHForfait frais = new FraisHForfait(res.getString("intitules"), res.getDouble("cout"),
-                        res.getInt("id_utilisateur"), id.getDate(res.getInt("id_utilisateur")));
+                        res.getInt("id_fraisHF"), id.getDate(res.getInt("id_fraisHF")));
 
                 createHFRow(frais);
                 hfListe.add(frais);

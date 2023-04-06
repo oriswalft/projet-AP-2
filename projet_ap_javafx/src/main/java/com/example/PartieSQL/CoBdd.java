@@ -209,7 +209,7 @@ public class CoBdd {
     public int addHF(String intitule, double cout) {
         Connection conn = connectDb();
         try {
-            String SQL = "INSERT INTO frais_hors_forfaits (id_utilisateur, fk_fraisHF, intitules, cout) VALUES (?,?,?,?)";
+            String SQL = "INSERT INTO frais_hors_forfaits (id_fraisHF, fk_fraisHF, intitules, cout) VALUES (?,?,?,?)";
             PreparedStatement statement = conn.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
 
             statement.setNull(1, 0);
@@ -237,7 +237,7 @@ public class CoBdd {
         Connection conn = connectDb();
         System.out.println("[I] Updating...");
         try {
-            String query = "UPDATE frais_hors_forfaits SET intitules = ?, cout = ? WHERE id_utilisateur = ?";
+            String query = "UPDATE frais_hors_forfaits SET intitules = ?, cout = ? WHERE id_fraisHF = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, intitule);
             statement.setDouble(2, cout);
@@ -252,7 +252,7 @@ public class CoBdd {
     public void deleteHF(int key) {
         Connection conn = connectDb();
         try {
-            String query = "DELETE FROM frais_hors_forfaits WHERE id_utilisateur = ?";
+            String query = "DELETE FROM frais_hors_forfaits WHERE id_fraisHF = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, key);
 
@@ -266,7 +266,7 @@ public class CoBdd {
         Connection conn = connectDb();
         Date dateSql = null;
         try {
-            String query = "SELECT Date FROM frais_hors_forfaits WHERE id_utilisateur = ?";
+            String query = "SELECT Date FROM frais_hors_forfaits WHERE id_fraisHF = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, key);
             ResultSet res = statement.executeQuery();
@@ -285,7 +285,7 @@ public class CoBdd {
     public void saveDate(LocalDate date, int key) {
         Connection conn = connectDb();
         try {
-            String sql = "UPDATE frais_hors_forfaits SET date = (?) WHERE id_utilisateur = \" " + key + "\";";
+            String sql = "UPDATE frais_hors_forfaits SET date = (?) WHERE id_fraisHF = \" " + key + "\";";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setDate(1, java.sql.Date.valueOf(date));
             statement.executeUpdate();

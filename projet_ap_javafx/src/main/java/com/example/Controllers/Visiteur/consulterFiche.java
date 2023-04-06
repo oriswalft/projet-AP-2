@@ -82,8 +82,8 @@ public class consulterFiche implements Initializable {
 
                 FraisHForfait frais = new FraisHForfait(res.getString("intitules"),
                         res.getDouble("cout"),
-                        res.getInt("id_utilisateur"),
-                        CONNEXION_BDD.getDate(res.getInt("id_utilisateur")));
+                        res.getInt("id_fraisHF"),
+                        CONNEXION_BDD.getDate(res.getInt("id_fraisHF")));
 
                 fiche.getFraisHForfaits().add(frais);
             }
