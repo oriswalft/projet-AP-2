@@ -22,12 +22,12 @@ import com.example.Utils.User;
 
 public class CoBdd {
 
-    private final String dbURL = "jdbc:mysql://127.0.0.1:3306/projet_ap2";
-    private final String dbMDP = "Thomas1003";
-    private final int mois = trouverMois(); // Récupère le mois en cours, afin de récupérer la fiche du mois. 
+    private final String dbURL = "jdbc:mysql://172.16.107.6:3306/projet_ap2";
+    private final String dbMDP = "";
+    private final int mois = trouverMois(); // Récupère le mois en cours, afin de récupérer la fiche du mois.
 
-    private int trouverMois(){
-        java.util.Date date= new java.util.Date();
+    private int trouverMois() {
+        java.util.Date date = new java.util.Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
 
@@ -35,8 +35,8 @@ public class CoBdd {
         int month = cal.get(Calendar.MONTH);
 
         // TODO: Modifier le "15" pour récupérer la date de l'énoncé.
-        if (jour > 15){
-            month = month+1;
+        if (jour > 10) {
+            month = month + 1;
         }
 
         return month;
@@ -47,7 +47,7 @@ public class CoBdd {
         Connection conn;
 
         try {
-            conn = DriverManager.getConnection(dbURL, "root", dbMDP);
+            conn = DriverManager.getConnection(dbURL, "gsb", dbMDP);
 
             return conn;
         } catch (SQLException e) {
@@ -91,7 +91,7 @@ public class CoBdd {
 
                     User.setUser(user_info);
 
-                return true;
+                    return true;
                 }
             } else {
                 return false;
@@ -143,18 +143,20 @@ public class CoBdd {
     public int getQty(String name) {
         Connection conn = connectDb();
         try {
-            String query = "SELECT " + name + ", Date FROM fiches_de_frais WHERE fk_utilisateurs = ? AND MONTH(Date) = ?";
+            String query = "SELECT " + name
+                    + ", Date FROM fiches_de_frais WHERE fk_utilisateurs = ? AND MONTH(Date) = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setString(1, User.getMATRICULE());
             statement.setInt(2, mois);
             ResultSet res = statement.executeQuery();
-            
+
             if (res.next()) {
                 return res.getInt(name);
             } else {
-                if (res.getRow() == 0){
+                if (res.getRow() == 0) {
                     Statement req = conn.createStatement();
-                    req.execute("INSERT INTO fiches_de_frais (fk_utilisateurs,Nuitee,Kilometre,Repas_midi) VALUES (\"" +User.getMATRICULE()+ "\", 0,0,0)");
+                    req.execute("INSERT INTO fiches_de_frais (fk_utilisateurs,Nuitee,Kilometre,Repas_midi) VALUES (\""
+                            + User.getMATRICULE() + "\", 0,0,0)");
                 }
             }
 
@@ -167,7 +169,8 @@ public class CoBdd {
     public void setQty(String name, int qty) {
         Connection conn = connectDb();
         try {
-            String query = "UPDATE fiches_de_frais SET " + name + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > 15";
+            String query = "UPDATE fiches_de_frais SET " + name
+                    + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > 15";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, qty);
             statement.setString(2, User.getMATRICULE());
@@ -217,10 +220,10 @@ public class CoBdd {
             statement.executeBatch();
 
             ResultSet rs = statement.getGeneratedKeys();
-            if (rs.next()){
+            if (rs.next()) {
                 return rs.getInt(1);
-            }
-            else return -1;
+            } else
+                return -1;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -251,7 +254,7 @@ public class CoBdd {
             String query = "DELETE FROM frais_hors_forfaits WHERE id_fk_fraisHF = ?";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, key);
-            
+
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -290,7 +293,7 @@ public class CoBdd {
         }
     }
 
-    public ResultSet fetchFiches(String matricule){
+    public ResultSet fetchFiches(String matricule) {
         Connection conn = connectDb();
         try {
             String sql = "SELECT * FROM fiches_de_frais WHERE fk_utilisateurs = (?);";
