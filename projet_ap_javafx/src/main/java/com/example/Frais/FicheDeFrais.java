@@ -11,6 +11,7 @@ public class FicheDeFrais {
      // Pourquoi les ArrayList ? Car c'est plus facile à manipuler que les tableaux basiques, et que leur taille n'est pas fixée.
     private ArrayList<FraisForfaitaires> fraisForfaitaires = new ArrayList<>();
     private ArrayList<FraisHForfait> fraisHForfaits = new ArrayList<>();
+    private int id; 
 
 
     public ArrayList<FraisForfaitaires> getFraisForfaitaires() {
@@ -25,5 +26,13 @@ public class FicheDeFrais {
     }
     public void setFraisHForfaits(ArrayList<FraisHForfait> fraisHForfaits) {
         this.fraisHForfaits = fraisHForfaits;
+    }
+
+    public void setId (int id){
+        this.id = id;
+    }
+
+    public int getId (){
+        return this.id;
     }
 }

@@ -71,6 +71,7 @@ public class editerFiche {
         } else {
             month = cal.get(Calendar.MONTH) - 1;
         }
+        
         String mois = moisList[month];
 
         titleLabel.setText("Edition de la fiche du mois de " + mois + ":");

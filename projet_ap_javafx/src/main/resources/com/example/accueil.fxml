@@ -40,7 +40,7 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox fx:id="visitorContainer" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="visitorContainer" prefHeight="83.0" prefWidth="206.0">
                <children>
                   <Button fx:id="homeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="233.0" styleClass="userInfoBtn" text="Acceuil" textFill="WHITE">
                      <graphic>
@@ -67,6 +67,32 @@
                   <Button fx:id="readButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToRead" prefHeight="26.0" prefWidth="291.0" styleClass="userInfoBtn" text="Consulter fiche de frais" textFill="WHITE">
                      <graphic>
                         <FontIcon iconColor="WHITE" iconLiteral="fa-folder-open" styleClass="icon" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox fx:id="comptableContainer" prefHeight="83.0" prefWidth="206.0">
+               <children>
+                  <Button fx:id="homeBtn" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#goToHome" prefHeight="26.0" prefWidth="233.0" styleClass="userInfoBtn" text="Acceuil" textFill="WHITE">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-home" styleClass="icon" text="" />
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="comptableBtn" alignment="TOP_LEFT" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#goToCheck" prefHeight="26.0" styleClass="userInfoBtn" text="Consulter les fiches" textFill="WHITE">
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-pencil" styleClass="icon" />
                      </graphic>
                      <font>
                         <Font name="System Bold" size="12.0" />

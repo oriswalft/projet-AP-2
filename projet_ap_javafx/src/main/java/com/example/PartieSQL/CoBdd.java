@@ -193,11 +193,11 @@ public class CoBdd {
 
     }
 
-    public ResultSet fetchHF(int mois) throws SQLException {
+    public ResultSet fetchHF(int mois, String matricule) throws SQLException {
         Connection conn = connectDb();
         String query = "SELECT * FROM frais_hors_forfaits WHERE fk_fraisHF = ? AND MONTH(Date) = ?";
         PreparedStatement statement = conn.prepareStatement(query);
-        statement.setString(1, User.getMATRICULE());
+        statement.setString(1, matricule);
         statement.setInt(2, mois);
         ResultSet res = statement.executeQuery();
 
@@ -307,5 +307,32 @@ public class CoBdd {
         }
 
         return null;
+    }
+
+    public ResultSet fetchAllUnchecked (){
+        Connection conn = connectDb();
+        try {
+            String sql = "SELECT id_fiche_de_frais, matricule,Date,qteNuitee,Kilometre,Repas_midi,verifiee,nom,prenom FROM fiches_de_frais INNER JOIN utilisateur ON matricule = fk_utilisateurs WHERE verifiee = 0;";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            ResultSet res = statement.executeQuery();
+
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void markFicheAsChecked(int key, int value){
+        Connection conn = connectDb();
+        try {
+            String sql = "UPDATE fiches_de_frais SET verifiee = (?) WHERE id_fiche_de_frais = \" " + key + "\";";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, value);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

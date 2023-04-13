@@ -77,7 +77,7 @@ public class consulterFiche implements Initializable {
                     fichesUser.getInt("Repas_midi")));
 
             // Récupère les frais hors forfaits du mois sélectionné
-            ResultSet res = CONNEXION_BDD.fetchHF(fichesUser.getDate("Date").toLocalDate().getMonth().getValue());
+            ResultSet res = CONNEXION_BDD.fetchHF(fichesUser.getDate("Date").toLocalDate().getMonth().getValue(), User.getMATRICULE());
             while (res.next()) {
 
                 FraisHForfait frais = new FraisHForfait(res.getString("intitules"),

@@ -23,13 +23,13 @@ import javafx.scene.layout.VBox;
 public class Accueil implements Initializable{
 
     @FXML
-    private Button btnDeco, closeBtn, editButton, homeBtn, readButton;
+    private Button btnDeco, closeBtn, editButton, homeBtn, readButton, comptableBtn;
 
     @FXML
     private HBox screen;
 
     @FXML
-    private VBox screenVBox, slidingMenuVBox, visitorContainer;
+    private VBox screenVBox, slidingMenuVBox, visitorContainer, comptableContainer;
 
     @FXML
     private Pane secPane;
@@ -66,6 +66,12 @@ public class Accueil implements Initializable{
     void goToHome(ActionEvent event) throws IOException {
         secPane.getChildren().setAll(Navigation.getFXML("Visiteur/accueil.fxml"));
     }
+
+    @FXML
+    void goToCheck(ActionEvent event) throws IOException {
+        secPane.getChildren().setAll(Navigation.getFXML("Comptable/consulterFiches.fxml"));
+    }
+    
     @FXML
     void closeApp (ActionEvent action){
         System.exit(0);
@@ -99,7 +105,9 @@ public class Accueil implements Initializable{
 
         // Enlève les boutons d'édition et de consultation pour les comptables.
         if (User.getTYPE_AGENT() == 2 ){
-            visitorContainer.getChildren().removeAll(editButton,readButton);
+            slidingMenuVBox.getChildren().removeAll(visitorContainer);
+        } else {
+            slidingMenuVBox.getChildren().removeAll(comptableContainer);
         }
     }
 }
