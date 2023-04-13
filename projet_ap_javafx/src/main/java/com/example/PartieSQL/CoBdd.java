@@ -22,7 +22,7 @@ import com.example.Utils.User;
 
 public class CoBdd {
 
-    private final String dbURL = "jdbc:mysql://172.16.107.6:3306/projet_ap2";
+    private final String dbURL = "jdbc:mysql://172.16.107.5:3306/projet_ap2";
     private final String dbMDP = "";
     private final int mois = trouverMois(); // Récupère le mois en cours, afin de récupérer la fiche du mois.
 
