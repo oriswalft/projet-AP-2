@@ -66,7 +66,7 @@ public class editerFiche {
         java.util.Date date = new Date();
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        if (cal.get(Calendar.DAY_OF_MONTH) > 15) {
+        if (cal.get(Calendar.DAY_OF_MONTH) > 10) {
             month = cal.get(Calendar.MONTH);
         } else {
             month = cal.get(Calendar.MONTH) - 1;

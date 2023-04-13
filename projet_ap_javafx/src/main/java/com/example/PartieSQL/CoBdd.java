@@ -33,8 +33,7 @@ public class CoBdd {
 
         int jour = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
-        // TODO: Documenter les requetes sql
-        // TODO: Modifier le "15" pour récupérer la date de l'énoncé.
+
         if (jour > 10) {
             month = month + 1;
         }
@@ -171,7 +170,7 @@ public class CoBdd {
         Connection conn = connectDb();
         try {
             String query = "UPDATE fiches_de_frais SET " + name
-                    + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > 15";
+                    + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > 10";
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, qty);
             statement.setString(2, User.getMATRICULE());
