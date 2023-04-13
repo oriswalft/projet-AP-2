@@ -25,7 +25,7 @@ public class CoBdd {
     private final String dbURL = "jdbc:mysql://172.16.107.5:3306/projet_ap2";
     private final String dbMDP = "";
     private final int mois = trouverMois(); // Récupère le mois en cours, afin de récupérer la fiche du mois.
-
+    private final int jourDeChangement = 10;
     private int trouverMois() {
         java.util.Date date = new java.util.Date();
         Calendar cal = Calendar.getInstance();
@@ -34,7 +34,7 @@ public class CoBdd {
         int jour = cal.get(Calendar.DAY_OF_MONTH);
         int month = cal.get(Calendar.MONTH);
 
-        if (jour > 10) {
+        if (jour > jourDeChangement) {
             month = month + 1;
         }
 
@@ -170,7 +170,7 @@ public class CoBdd {
         Connection conn = connectDb();
         try {
             String query = "UPDATE fiches_de_frais SET " + name
-                    + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > 10";
+                    + " = ? WHERE fk_utilisateurs = ? AND MONTH(Date) = ? AND DAY(Date) > " + jourDeChangement;
             PreparedStatement statement = conn.prepareStatement(query);
             statement.setInt(1, qty);
             statement.setString(2, User.getMATRICULE());

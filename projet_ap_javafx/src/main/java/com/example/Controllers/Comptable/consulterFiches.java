@@ -79,14 +79,15 @@ public class consulterFiches implements Initializable{
         fichesViewVBox.getChildren().addAll(
                 new Label("Nuitées :" + frais.getFraisForfaitaires().get(0).getQte().get()),
                 new Label("Repas du midi :" + frais.getFraisForfaitaires().get(1).getQte().get()),
-                new Label("Kilomètres :" + frais.getFraisForfaitaires().get(2).getQte().get()),
-                btn
+                new Label("Kilomètres :" + frais.getFraisForfaitaires().get(2).getQte().get())
             );
 
         for (FraisHForfait i : frais.getFraisHForfaits()) {
             fichesViewVBox.getChildren().add(
                     new Label(i.getIntitule() + ":" + i.getCout() + i.getDate()));
         }
+
+        fichesViewVBox.getChildren().add(btn);
     }
 
     private void obtenirFiches(ResultSet fichesUser){
