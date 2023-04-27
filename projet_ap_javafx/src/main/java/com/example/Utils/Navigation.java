@@ -13,6 +13,13 @@ public class Navigation {
      * Classe qui sert à naviguer dans l'application.
      */
 
+
+     /**
+      * 
+      * @param fxml Le nom de la fiche vers laquelle naviguer
+      * @return un objet qui contient la fiche
+      * @throws IOException
+      */
     public static Parent getFXML(String fxml) throws IOException {
         return loadFXML(fxml);
     }

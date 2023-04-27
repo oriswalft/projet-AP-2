@@ -17,6 +17,11 @@ public class User {
     private static int TYPE_VEHICULE;
     private static int TYPE_AGENT;
 
+
+    /**
+     * 
+     * @param res contient toutes les infos de l'utilisateur et sers à les mettre à jour
+     */
     public static void setUser(ResultSet res) {
         try {
             if (res.next()){

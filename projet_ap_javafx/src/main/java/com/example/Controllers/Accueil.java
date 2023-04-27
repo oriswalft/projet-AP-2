@@ -77,7 +77,6 @@ public class Accueil implements Initializable{
         System.exit(0);
     }
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

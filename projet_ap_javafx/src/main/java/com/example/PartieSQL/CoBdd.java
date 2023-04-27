@@ -56,7 +56,11 @@ public class CoBdd {
         return null;
     }
 
-    // Fonction qui vérifie que la paire nom d'utilisateur/ mot de passe est valide.
+    /**
+    * Fonction qui vérifie que la paire nom d'utilisateur/ mot de passe est valide.
+    * @param username : Le nom d'utilisateur
+    * @param password : Le mot de passe
+    */
     public boolean validKey(String username, String password) {
         Connection conn = connectDb();
         String hashedPw = "";
@@ -101,6 +105,11 @@ public class CoBdd {
         return false;
     }
 
+    /**
+     * @param frais : l'intitulé du frais à selectionner
+     * 
+     * @return le cout 
+     */
     public double getFrais(String frais) {
         Connection conn = connectDb();
         try {
@@ -121,6 +130,11 @@ public class CoBdd {
         return 0.0;
     }
 
+    /**
+     * 
+     * @return le cout
+     */
+
     public double fuelCost() {
         Connection conn = connectDb();
         try {
@@ -139,6 +153,11 @@ public class CoBdd {
         return 0.0;
     }
 
+    /**
+     * 
+     * @param name le nom du frais à récupérer
+     * @return le quantité
+     */
     public int getQty(String name) {
         Connection conn = connectDb();
         try {
@@ -166,6 +185,11 @@ public class CoBdd {
         return 0;
     }
 
+    /**
+     * Modifie la quantité du frais énoncé
+     * @param name le nom du frais
+     * @param qty la quantité
+     */
     public void setQty(String name, int qty) {
         Connection conn = connectDb();
         try {
@@ -181,6 +205,11 @@ public class CoBdd {
         }
     }
 
+    /**
+     * 
+     * @return renvoie tous les frais hors forfaits de l'utilisateur connecté.
+     * @throws SQLException
+     */
     public ResultSet fetchHF() throws SQLException {
         Connection conn = connectDb();
         String query = "SELECT * from frais_hors_forfaits WHERE fk_fraisHF = ? AND MONTH(Date) = ?";
@@ -193,6 +222,13 @@ public class CoBdd {
 
     }
 
+    /**
+     * 
+     * @param mois Le mois pour lequel on souhaite obtenir les frais hors forfaits
+     * @param matricule le matricule de l'utilisateur pour lequel on souhaite obtenir les frais hors forfaits
+     * @return toutes les informations sur les frais 
+     * @throws SQLException
+     */
     public ResultSet fetchHF(int mois, String matricule) throws SQLException {
         Connection conn = connectDb();
         String query = "SELECT * FROM frais_hors_forfaits WHERE fk_fraisHF = ? AND MONTH(Date) = ?";
@@ -204,6 +240,13 @@ public class CoBdd {
         return res;
 
     }
+
+    /**
+     * 
+     * @param intitule l'intitulé du frais hors forfait à ajouter
+     * @param cout le cout du frais à ajouter
+     * @return le nombre de clés générées, -1 s'il y a une erreur
+     */
 
     public int addHF(String intitule, double cout) {
         Connection conn = connectDb();
@@ -232,6 +275,12 @@ public class CoBdd {
         return -1;
     }
 
+    /**
+     * 
+     * @param intitule
+     * @param cout
+     * @param key la clé primaire du frais dans la base de données 
+     */
     public void updateHF(String intitule, double cout, int key) {
         Connection conn = connectDb();
         System.out.println("[I] Updating...");
@@ -248,6 +297,11 @@ public class CoBdd {
         }
     }
 
+    /**
+     * 
+     * @param key la clé primaire du frais à supprimer
+     */
+
     public void deleteHF(int key) {
         Connection conn = connectDb();
         try {
@@ -261,6 +315,11 @@ public class CoBdd {
         }
     }
 
+    /**
+     * 
+     * @param key la clé primaire du frais
+     * @return une date au format lisible par JavaFX
+     */
     public LocalDate getDate(int key) {
         Connection conn = connectDb();
         Date dateSql = null;
@@ -281,6 +340,11 @@ public class CoBdd {
         return null;
     }
 
+    /**
+     * 
+     * @param date La date pour laquelle il faut modifier
+     * @param key la clé primaire du frais à modifier
+     */ 
     public void saveDate(LocalDate date, int key) {
         Connection conn = connectDb();
         try {
@@ -293,6 +357,12 @@ public class CoBdd {
         }
     }
 
+
+    /**
+     * 
+     * @param matricule Le matricule de l'utilisateur pour lequel il faut récupérer les frais forfaitisés 
+     * @return tous les frais forfaitisés 
+     */
     public ResultSet fetchFiches(String matricule) {
         Connection conn = connectDb();
         try {
@@ -309,6 +379,10 @@ public class CoBdd {
         return null;
     }
 
+    /**
+     * 
+     * @return Tous les frais qui n'ont pas été vérifiés par un comptable
+     */
     public ResultSet fetchAllUnchecked (){
         Connection conn = connectDb();
         try {
@@ -324,6 +398,12 @@ public class CoBdd {
         return null;
     }
 
+
+    /**
+     * 
+     * @param key La clé primaire qui sert à identifier la fiche
+     * @param value 1 ou 0 pour vrai ou faux 
+    */
     public void markFicheAsChecked(int key, int value){
         Connection conn = connectDb();
         try {
