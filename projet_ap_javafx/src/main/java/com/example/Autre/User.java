@@ -1,4 +1,4 @@
-package com.example.Utils;
+package com.example.Autre;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

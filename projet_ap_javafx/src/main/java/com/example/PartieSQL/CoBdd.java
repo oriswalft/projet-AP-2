@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.Calendar;
 
-import com.example.Utils.User;
+import com.example.Autre.User;
 
 /*
  * Fichier qui sert à se connecter à la base de données MySQL, localisée sur le PC d'Aymeric.

@@ -5,9 +5,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.example.App;
+import com.example.Autre.Navigation;
+import com.example.Autre.User;
 import com.example.Controllers.Visiteur.editerFiche;
-import com.example.Utils.Navigation;
-import com.example.Utils.User;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

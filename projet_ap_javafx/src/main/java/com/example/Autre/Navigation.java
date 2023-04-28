@@ -1,4 +1,4 @@
-package com.example.Utils;
+package com.example.Autre;
 
 import java.io.IOException;
 
@@ -15,7 +15,6 @@ public class Navigation {
 
 
      /**
-      * 
       * @param fxml Le nom de la fiche vers laquelle naviguer
       * @return un objet qui contient la fiche
       * @throws IOException
