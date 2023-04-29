@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example","l":"com.example"},{"m":"com.example","l":"com.example.Autre"},{"m":"com.example","l":"com.example.Frais"},{"m":"com.example","l":"com.example.PartieSQL"}];updateSearchResults();
