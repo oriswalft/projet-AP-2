@@ -73,7 +73,7 @@ img {
 
 img:hover {
     transform: scale(2) translate(100px);
-    transition: all 0.3s;
+    transition: all ease-in-out 0.3s;
 
 }
 
